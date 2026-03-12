@@ -1,1 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
 @import "tailwindcss";
+
+@theme {
+    --color-red: #b91c1c;
+    --color-red-dark: #991b1b; 
+    --color-red-hover: #7f1d1d; 
+    
+    --color-bg-warm: #f9f6f1; 
+    --color-bg-white: #ffffff; 
+
+    --color-text-dark: #1a1a1a; 
+    --color-text-muted: #78716c;
+    --color-text-light: #a8a29e; 
+
+    --color-border: #e5e0d8; 
+    --color-border-light: #f0ece4; 
+}
+
+:root {
+    font-family: "DM sans";
+}
