@@ -5,6 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tokimahery RAMAROZAKA</title>
     <link rel="stylesheet" href="./dist/output.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
   </head>
-  <body></body>
+  <body>
+    <header
+      class="flex justify-between items-center py-4 bg-red-dark **:text-white"
+    >
+      <div>
+        <img
+          src="assets/logo.png"
+          class="w-48 cursor-pointer"
+          alt="Logo de Tokimahery Ramarozaka"
+        />
+      </div>
+      <nav>
+        <ul
+          class="flex gap-12 **:text-[0.9rem] [&_li]:flex [&_li]:flex-col [&_li]:items-center [&_li>hr]:w-0 [&_li]:hover:[&>hr]:w-full [&_li>hr]:transition-all"
+        >
+          <li>
+            <a href="#">HOME</a>
+            <hr />
+          </li>
+          <li>
+            <a href="#">BLOG</a>
+            <hr />
+          </li>
+          <li>
+            <a href="#">COURSES</a>
+            <hr />
+          </li>
+          <li>
+            <a href="#">TESTIMONIALS</a>
+            <hr />
+          </li>
+          <li>
+            <a href="#">RESEARCH</a>
+            <hr />
+          </li>
+        </ul>
+      </nav>
+      <div class="pr-12 flex gap-2">
+        <input type="text" placeholder="Search anything..." />
+        <i class="fa-solid fa-basket-shopping text-[1.7rem]"></i>
+      </div>
+    </header>
+  </body>
 </html>
