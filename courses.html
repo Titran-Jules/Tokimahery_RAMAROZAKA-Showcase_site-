@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tokimahery RAMAZOZAKA | All courses</title>
+    <title>Tokimahery RAMAROZAKA | All courses</title>
     <link rel="stylesheet" href="./dist/output.css" />
     <link
       rel="stylesheet"
@@ -65,7 +65,80 @@
         <h1 class="text-text-dark font-semibold font-Playfair text-6xl">
           All <span class="text-red italic">courses</span>
         </h1>
+        <p class="text-text-light text-center mt-2 w-3/12">
+          Online and offline courses across development, translation, and
+          research. Find the one that fits your level and goals.
+        </p>
       </main>
+
+      <section
+        class="flex justify-center gap-36 [&_h3]:text-text-light [&_h3]:text-[0.8rem] [&>div]:flex [&>div]:flex-col [&>div]:gap-3 px-16 py-8 rounded-3xl bg-bg-warm mt-4 mx-24"
+      >
+        <div>
+          <h3>LANGUAGE</h3>
+          <div class="**:w-5 flex gap-2">
+            <img
+              src="assets/drapeau_madagscar.png"
+              alt="drapeau de Madagascar"
+            />
+            <img src="assets/drapeau_france.png" alt="drapeau de france" />
+            <img
+              src="assets/drapeau_etat-unis.png"
+              alt="drapeau des etat-unis"
+            />
+          </div>
+        </div>
+        <div>
+          <h3>TECHNOLOGY</h3>
+          <select
+            name="technology"
+            id=""
+            class="bg-bg-white py-2 px-2 rounded-xl"
+          >
+            <option value="">All technologies</option>
+            <option value="">JavaScript</option>
+            <option value="">Java</option>
+            <option value="">Python</option>
+            <option value="">PHP</option>
+          </select>
+        </div>
+        <div>
+          <h3>LEVEL</h3>
+          <select name="level" id="" class="bg-bg-white py-2 px-2 rounded-xl">
+            <option value="">All levels</option>
+            <option value="">Beginner</option>
+            <option value="">Intermediate</option>
+            <option value="">Advanced</option>
+          </select>
+        </div>
+        <div>
+          <div class="flex gap-3 items-center">
+            <h3>PRICE RANGE</h3>
+            <div class="flex gap-1 **:text-red-dark **:text-[0.9rem]">
+              <span>0</span>
+              <span>Ar</span>
+              <span>~</span>
+              <span>300,000</span>
+              <span>Ar</span>
+            </div>
+          </div>
+          <div class="flex flex-col **:accent-red">
+            <input type="range" />
+            <input type="range" />
+          </div>
+        </div>
+        <div>
+          <h3>SEARCH</h3>
+          <input
+            type="text"
+            class="bg-bg-white rounded-xl px-4 w-60 py-1"
+            placeholder="Keywords..."
+          />
+        </div>
+        <div class="mt-7">
+          <span class="text-[0.9rem] text-text-light">CLEAR ALL</span>
+        </div>
+      </section>
     </section>
   </body>
 </html>
