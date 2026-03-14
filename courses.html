@@ -74,18 +74,24 @@
       </main>
 
       <section
-        class="flex justify-between [&_h3]:text-text-light [&_h3]:text-[0.8rem] [&>div]:flex [&>div]:flex-col [&>div]:gap-3 px-16 py-8 rounded-3xl bg-bg-warm mt-4 mx-24"
+        class="flex justify-between [&_h3]:text-text-light [&_h3]:text-[0.8rem] [&>div]:flex [&>div]:flex-col [&>div]:gap-3 px-16 py-6 rounded-3xl bg-bg-warm mt-4 mx-24"
       >
         <div>
           <h3>LANGUAGE</h3>
           <div class="**:w-5 flex gap-2">
             <img
               src="assets/drapeau_madagscar.png"
+              id="mg"
               alt="drapeau de Madagascar"
             />
-            <img src="assets/drapeau_france.png" alt="drapeau de france" />
+            <img
+              src="assets/drapeau_france.png"
+              id="fr"
+              alt="drapeau de france"
+            />
             <img
               src="assets/drapeau_etat-unis.png"
+              id="en"
               alt="drapeau des etat-unis"
             />
           </div>
@@ -94,39 +100,58 @@
           <h3>TECHNOLOGY</h3>
           <select
             name="technology"
-            id=""
+            id="technology"
             class="bg-bg-white py-2 px-2 rounded-xl"
           >
-            <option value="">All technologies</option>
-            <option value="">JavaScript</option>
-            <option value="">Java</option>
-            <option value="">Python</option>
-            <option value="">PHP</option>
+            <option value="all technologies">All technologies</option>
+            <option value="javascript">JavaScript</option>
+            <option value="java">Java</option>
+            <option value="python">Python</option>
+            <option value="php">PHP</option>
+            <option value="sql">SQL</option>
           </select>
         </div>
         <div>
           <h3>LEVEL</h3>
-          <select name="level" id="" class="bg-bg-white py-2 px-2 rounded-xl">
-            <option value="">All levels</option>
-            <option value="">Beginner</option>
-            <option value="">Intermediate</option>
-            <option value="">Advanced</option>
+          <select
+            name="level"
+            id="level"
+            class="bg-bg-white py-2 px-2 rounded-xl"
+          >
+            <option value="all levels">All levels</option>
+            <option value="beginner">Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="advanced">Advanced</option>
           </select>
         </div>
         <div>
           <div class="flex gap-3 items-center">
             <h3>PRICE RANGE</h3>
             <div class="flex gap-1 **:text-red-dark **:text-[0.9rem]">
-              <span>0</span>
+              <span id="priceMinLabel">0</span>
               <span>Ar</span>
               <span>~</span>
-              <span>300,000</span>
+              <span id="priceMaxLabel">300,000</span>
               <span>Ar</span>
             </div>
           </div>
           <div class="flex flex-col **:accent-red">
-            <input type="range" />
-            <input type="range" />
+            <input
+              type="range"
+              min="0"
+              max="300000"
+              step="1000"
+              value="0"
+              id="priceMin"
+            />
+            <input
+              type="range"
+              min="0"
+              max="300000"
+              step="1000"
+              value="300000"
+              id="priceMax"
+            />
           </div>
         </div>
         <div>
@@ -145,7 +170,7 @@
 
     <section
       id="courses_section"
-      class="grid grid-cols-4 gap-12 px-28 mt-8"
+      class="grid grid-cols-4 gap-16 px-28 mt-8"
     ></section>
     <script src="main.js"></script>
   </body>

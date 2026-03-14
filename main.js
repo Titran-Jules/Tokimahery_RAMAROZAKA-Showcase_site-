@@ -20,29 +20,103 @@ const levelColor = {
     advanced: "bg-[#F92A37]"
 }
 
-const courses_section = document.querySelector("#courses_section");
-courses_section.innerHTML = "";
+let currentFilters = {
+    languageMG: true,
+    languageFR: true,
+    languageEN: true,
+    technology: "all technologies",
+    level: "all levels",
+    priceMIN: 0,
+    priceMAX: 300000 
+}
 
-courses.forEach(course => {
+function filterCourses(data) {
+    return data.filter(item => {
+        const isAnyLanguageSelected = currentFilters.languageMG || currentFilters.languageFR || currentFilters.languageEN;
+        const languageMatch =   !isAnyLanguageSelected || 
+                                (currentFilters.languageMG && item.language === 'mg') ||
+                                (currentFilters.languageFR && item.language === 'fr') ||
+                                (currentFilters.languageEN && item.language === 'en');
+
+        const technologyMatch = currentFilters.technology === "all technologies" || item.technologies.includes(currentFilters.technology);
+        const levelMatch = currentFilters.level === "all levels" || item.level === currentFilters.level;
+        const priceMatch = item.price >= currentFilters.priceMIN && item.price <= currentFilters.priceMAX;
+
+        return languageMatch && technologyMatch && levelMatch && priceMatch;
+
+    });
+}
+
+document.querySelector("#mg").addEventListener("click", (e) => {
+    currentFilters.languageMG = !currentFilters.languageMG;
+    e.target.classList.toggle("brightness-50");
+    e.target.classList.toggle("opacity-50");
+    updateCourses();
+});
+    
+document.querySelector("#fr").addEventListener("click", (e) => {
+    currentFilters.languageFR = !currentFilters.languageFR;
+    e.target.classList.toggle("brightness-50");
+    e.target.classList.toggle("opacity-50");
+    updateCourses();
+});
+
+document.querySelector("#en").addEventListener("click", (e) => {
+    currentFilters.languageEN = !currentFilters.languageEN;
+    e.target.classList.toggle("brightness-50");
+    e.target.classList.toggle("opacity-50");
+    updateCourses();
+});
+
+document.querySelector("#technology").addEventListener("change", (e) => {
+    currentFilters.technology = e.target.value;
+    updateCourses();
+})
+
+document.querySelector("#level").addEventListener("change", (e) => {
+    currentFilters.level = e.target.value;
+    updateCourses();
+});
+
+document.querySelector("#priceMin").addEventListener("input", (e) => {
+    currentFilters.priceMIN = parseInt(e.target.value);
+    document.querySelector("#priceMinLabel").textContent = Number(e.target.value).toLocaleString('en-us');
+    updateCourses();
+});
+
+document.querySelector("#priceMax").addEventListener("input", (e) => {
+    currentFilters.priceMAX = parseInt(e.target.value);
+    document.querySelector("#priceMaxLabel").textContent = Number(e.target.value).toLocaleString('en-us');
+    updateCourses();
+});
+
+function updateCourses() {
+    const filteredCourses = filterCourses(courses);
+    const courses_section = document.querySelector("#courses_section");
+    courses_section.innerHTML = "";
+
+    filteredCourses.forEach(course => {
     courses_section.innerHTML += `
-        <main class="shadow-3xl flex flex-col">
+        <main class="shadow-3xl pb-3 flex flex-col gap-2">
             <div class="relative">
                 <img src="${course.thumbnail}" alt="Thumbnail" class="rounded-t-2xl" />
                 <div class="absolute top-0 left-0 flex gap-2 mt-2 ml-2">
-                    <span class="text-black bg-white py-1 px-3 rounded-2xl">${course.language.toUpperCase()}</span>
-                    <span class="text-white ${course.technologies.length != 0 ? "bg-black" : ""} py-1 px-3 rounded-2xl">${course.technologies.length != 0 ? course.technologies[0] : ""}</span>
+                    <span class="text-[0.8rem] text-black bg-white py-1 px-4 rounded-2xl">${course.language.toUpperCase()}</span>
+                    <span class="text-[0.8rem] text-white ${course.technologies.length != 0 ? "bg-black" : ""} py-1 px-3 rounded-2xl">${course.technologies.length > 0 ? course.technologies[0] : ""}</span>
                 </div>
                 <span class="absolute text-white bottom-0 right-0 py-1 px-3 ${levelColor[course.level]}">${course.level}</span>
             </div>
-            <h3>${course.title}</h3>
-            <h4>MGA ${course.price}</h4>
-            <p>${course.description}</p>
-            <div>
-                <button>Learn More</button>
-                <button>Add to cart</button>
+            <h3 class="text-4xl text-red truncate mt-3">${course.title}</h3>
+            <h4 class="text-xl font-medium">MGA ${course.price.toLocaleString('en-us')}</h4>
+            <p class="line-clamp-3 my-3">${course.description}</p>
+            <div class="flex gap-4 justify-end mt-3">
+                <button class="px-6 py-4 text-red bg-bg-white rounded-xl shadow-xl">Learn More</button>
+                <button class="px-6 py-4 text-white bg-red rounded-xl shadow-xl">Add to cart</button>
             </div>
         </main>
     `;
 });
+}
 
+updateCourses();
 /* Fin all courses */
