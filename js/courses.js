@@ -23,7 +23,8 @@ let currentFilters = {
     technology: "all technologies",
     level: "all levels",
     priceMIN: 0,
-    priceMAX: 300000 
+    priceMAX: 300000,
+    search: "" 
 }
 
 function filterCourses(data) {
@@ -38,79 +39,156 @@ function filterCourses(data) {
         const levelMatch = currentFilters.level === "all levels" || item.level === currentFilters.level;
         const priceMatch = item.price >= currentFilters.priceMIN && item.price <= currentFilters.priceMAX;
 
-        return languageMatch && technologyMatch && levelMatch && priceMatch;
+        const searchInput = currentFilters.search.trim().toLowerCase();
+        const searchMatch = searchInput === "" || item.title.toLowerCase().includes(searchInput) || item.description.toLowerCase().includes(searchInput);
+
+        return languageMatch && technologyMatch && levelMatch && priceMatch && searchMatch;
 
     });
 }
 
-document.querySelector("#mg").addEventListener("click", (e) => {
+const mg = document.querySelector("#mg");
+mg.addEventListener("click", (e) => {
     currentFilters.languageMG = !currentFilters.languageMG;
     e.target.classList.toggle("brightness-50");
     e.target.classList.toggle("opacity-50");
     updateCourses();
 });
     
-document.querySelector("#fr").addEventListener("click", (e) => {
+const fr = document.querySelector("#fr");
+fr.addEventListener("click", (e) => {
     currentFilters.languageFR = !currentFilters.languageFR;
     e.target.classList.toggle("brightness-50");
     e.target.classList.toggle("opacity-50");
     updateCourses();
 });
 
-document.querySelector("#en").addEventListener("click", (e) => {
+const en = document.querySelector("#en");
+en.addEventListener("click", (e) => {
     currentFilters.languageEN = !currentFilters.languageEN;
     e.target.classList.toggle("brightness-50");
     e.target.classList.toggle("opacity-50");
     updateCourses();
 });
 
-document.querySelector("#technology").addEventListener("change", (e) => {
+const technology = document.querySelector("#technology");
+technology.addEventListener("change", (e) => {
     currentFilters.technology = e.target.value;
     updateCourses();
 })
 
-document.querySelector("#level").addEventListener("change", (e) => {
+const level = document.querySelector("#level");
+level.addEventListener("change", (e) => {
     currentFilters.level = e.target.value;
     updateCourses();
 });
 
-document.querySelector("#priceMin").addEventListener("input", (e) => {
+const priceMin = document.querySelector("#priceMin");
+priceMin.addEventListener("input", (e) => {
     currentFilters.priceMIN = parseInt(e.target.value);
     document.querySelector("#priceMinLabel").textContent = Number(e.target.value).toLocaleString('en-us');
     updateCourses();
 });
 
-document.querySelector("#priceMax").addEventListener("input", (e) => {
+const priceMax = document.querySelector("#priceMax");
+priceMax.addEventListener("input", (e) => {
     currentFilters.priceMAX = parseInt(e.target.value);
     document.querySelector("#priceMaxLabel").textContent = Number(e.target.value).toLocaleString('en-us');
     updateCourses();
 });
 
+const search_input = document.querySelector("#search_input");
+search_input.addEventListener("input", (e) => {
+    currentFilters.search = e.target.value;
+    updateCourses();
+});
+
+const course_found = document.querySelector("#course_found");
+const courses_section = document.querySelector("#courses_section");
+
 function updateCourses() {
     const filteredCourses = filterCourses(courses);
-    const courses_section = document.querySelector("#courses_section");
+
+    const count_course = filteredCourses.length;
+
+    course_found.textContent = `${count_course} ${count_course <= 1 ? "COURSE" : "COURSES"} FOUND`;
+
     courses_section.innerHTML = "";
 
-    filteredCourses.forEach(course => {
-    courses_section.innerHTML += `
-        <main class="shadow-3xl pb-3 flex flex-col gap-2">
-            <div class="relative">
-                <img src="${course.thumbnail}" alt="Thumbnail" class="rounded-t-2xl" />
-                <div class="absolute top-0 left-0 flex gap-2 mt-2 ml-2">
-                    <span class="text-[0.8rem] text-black bg-white py-1 px-4 rounded-2xl">${course.language.toUpperCase()}</span>
-                    <span class="text-[0.8rem] text-white ${course.technologies.length != 0 ? "bg-black" : ""} py-1 px-3 rounded-2xl">${course.technologies.length > 0 ? course.technologies[0] : ""}</span>
+    if (count_course === 0) {
+        courses_section.innerHTML = `
+            <div class="flex flex-col col-span-4 justify-self-center self-center m-auto mt-20 mb-20 gap-6">
+                <h2 class="font-Playfair italic text-xl text-gray-500">No courses match your filters.</h2>
+                <button onclick="clearFilter()" class="text-red underline text-[0.9rem] cursor-pointer">CLEAR FILTER</button>
+            </div>
+        `;
+    }
+    else {
+        let coursesContent = "";
+        filteredCourses.forEach(course => {
+        coursesContent += `
+            <main class="shadow-3xl pb-3 flex flex-col gap-2">
+                <div class="relative">
+                    <img src="${course.thumbnail}" alt="Thumbnail" class="rounded-t-2xl" />
+                    <div class="absolute top-0 left-0 flex gap-2 mt-2 ml-2">
+                        <span class="text-[0.8rem] text-black bg-white py-1 px-4 rounded-2xl">${course.language.toUpperCase()}</span>
+                        <span class="text-[0.8rem] text-white ${course.technologies.length != 0 ? "bg-black" : ""} py-1 px-3 rounded-2xl">${course.technologies.length > 0 ? course.technologies[0] : ""}</span>
+                    </div>
+                    <span class="absolute text-white bottom-0 right-0 py-1 px-3 ${levelColor[course.level]}">${course.level}</span>
                 </div>
-                <span class="absolute text-white bottom-0 right-0 py-1 px-3 ${levelColor[course.level]}">${course.level}</span>
-            </div>
-            <h3 class="text-4xl text-red truncate mt-3">${course.title}</h3>
-            <h4 class="text-xl font-medium">MGA ${course.price.toLocaleString('en-us')}</h4>
-            <p class="line-clamp-3 my-3">${course.description}</p>
-            <div class="flex gap-4 justify-end mt-3">
-                <button class="px-6 py-4 text-red bg-bg-white rounded-xl shadow-xl">Learn More</button>
-                <button class="px-6 py-4 text-white bg-red rounded-xl shadow-xl">Add to cart</button>
-            </div>
-        </main>
-    `;
-});
+                <h3 class="text-4xl text-red truncate mt-3">${course.title}</h3>
+                <h4 class="text-xl font-medium">MGA ${course.price.toLocaleString('en-us')}</h4>
+                <p class="line-clamp-3 my-3">${course.description}</p>
+                <div class="flex gap-4 justify-end mt-3">
+                    <button class="px-6 py-4 text-red bg-bg-white rounded-xl shadow-xl">Learn More</button>
+                    <button class="px-6 py-4 text-white bg-red rounded-xl shadow-xl">Add to cart</button>
+                </div>
+            </main>
+        `;
+        });
+    
+        courses_section.innerHTML = coursesContent;
+    }
 }
+function clearFilter () {
+    if(mg.classList.contains("brightness-50") && mg.classList.contains("opacity-50")) {
+        mg.classList.remove("brightness-50");
+        mg.classList.remove("opacity-50");
+    }
+    if(fr.classList.contains("brightness-50") && fr.classList.contains("opacity-50")) {
+        fr.classList.remove("brightness-50");
+        fr.classList.remove("opacity-50");
+    }
+    if(en.classList.contains("brightness-50") && en.classList.contains("opacity-50")) {
+        en.classList.remove("brightness-50");
+        en.classList.remove("opacity-50");
+    }
+    technology.value = "all technologies";
+    level.value = "all levels";
+    priceMin.value = 0;
+    document.querySelector("#priceMinLabel").textContent = "0";
+    document.querySelector("#priceMaxLabel").textContent = "300,000";
+    priceMax.value = 300000;
+    search_input.value = "";
+
+    currentFilters = {
+        languageMG: true,
+        languageFR: true,
+        languageEN: true,
+        technology: "all technologies",
+        level: "all levels",
+        priceMIN: 0,
+        priceMAX: 300000,
+        search: "" 
+    };
+    updateCourses();
+}
+const clear_filter = document.querySelectorAll(".clear");
+
+clear_filter.forEach((button) => {
+    button.addEventListener("click", () => {
+        clearFilter();
+        updateCourses();
+    });
+});
 updateCourses();

@@ -158,20 +158,48 @@
           <h3>SEARCH</h3>
           <input
             type="text"
+            id="search_input"
             class="bg-bg-white rounded-xl px-4 w-60 py-1"
             placeholder="Keywords..."
           />
         </div>
         <div class="mt-7">
-          <span class="text-[0.9rem] text-text-light">CLEAR ALL</span>
+          <span class="text-[0.9rem] text-text-light clear cursor-pointer"
+            >CLEAR ALL</span
+          >
         </div>
       </section>
     </section>
 
+    <div class="flex flex-col gap-4 mt-4">
+      <hr class="h-0.5 border-0 bg-bg-warm" />
+      <span
+        class="text-text-light lg:ml-24 text-[0.8rem]"
+        id="course_found"
+      ></span>
+    </div>
+
     <section
       id="courses_section"
-      class="grid grid-cols-4 gap-16 px-28 mt-8"
+      class="grid grid-cols-4 gap-16 px-24 mt-8"
     ></section>
+
+    <section
+      class="flex mt-16 flex-col justify-center items-center py-15 px-5 gap-8 bg-[#b91c1c] text-white text-center"
+    >
+      <h2 class="text-4xl font-serif">Not sure where to start?</h2>
+
+      <p class="text-xs opacity-90 font-light max-w-2xl">
+        Book a free discovery call and find the course that fits your goals and
+        schedule.
+      </p>
+
+      <button
+        class="mt-2 px-10 py-3 border border-white rounded-full uppercase text-sm font-bold tracking-[0.2em] hover:bg-white hover:text-[#b91c1c] transition-all duration-300"
+      >
+        Get in touch
+      </button>
+    </section>
     <script src="./js/courses.js"></script>
   </body>
 </html>
