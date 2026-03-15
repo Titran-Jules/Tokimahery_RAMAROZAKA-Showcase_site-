@@ -12,7 +12,7 @@
   </head>
   <body>
     <header
-      class="flex justify-between items-center py-4 bg-red-dark **:text-white sticky top-0 z-100"
+      class="flex justify-between items-center py-4 bg-red-dark **:text-white sticky top-0 z-3"
     >
       <div>
         <a href="index.html">
@@ -49,9 +49,15 @@
           </li>
         </ul>
       </nav>
-      <div class="pr-8 flex gap-2">
+      <div class="pr-8 flex relative cursor-pointer">
         <input type="text" placeholder="Search anything..." />
         <i class="fa-solid fa-basket-shopping text-[1.7rem]"></i>
+        <span
+          id="cart-badge"
+          class="hidden absolute -top-3 right-5 bg-bg-warm !text-[#b91c1c] text-[0.7rem] font-bold h-5 w-5 flex items-center justify-center rounded-full"
+        >
+          0
+        </span>
       </div>
     </header>
 
@@ -174,15 +180,38 @@
     <div class="flex flex-col gap-4 mt-4">
       <hr class="h-0.5 border-0 bg-bg-warm" />
       <span
-        class="text-text-light lg:ml-24 text-[0.8rem]"
+        class="text-text-light ml-24 text-[0.8rem]"
         id="course_found"
       ></span>
     </div>
 
-    <section
-      id="courses_section"
-      class="grid grid-cols-4 gap-16 px-24 mt-8"
-    ></section>
+    <section id="courses_section" class="relative">
+      <div id="courses_list" class="grid grid-cols-4 gap-16 px-24 mt-8"></div>
+      <div
+        id="cart-popup"
+        class="hidden absolute right-8 top-16 bg-white w-[360px] rounded-2xl shadow-2xl p-6 z-50"
+      >
+        <div class="flex justify-between items-center mb-4">
+          <h2 id="cart-title" class="text-lg font-semibold">Your cart</h2>
+          <button id="close-cart" class="text-gray-400 text-xl">✕</button>
+        </div>
+        <div
+          id="cart-items"
+          class="flex flex-col gap-3 max-h-60 overflow-y-auto"
+        ></div>
+        <div class="mt-6 border-t border-gray-200 pt-4">
+          <div class="flex justify-between text-gray-500 text-sm mb-2">
+            <span>TOTAL</span>
+            <span id="cart-total">0 Ar</span>
+          </div>
+          <button
+            class="w-full bg-red-600 text-white py-3 rounded-xl font-semibold"
+          >
+            CONFIRM ORDER
+          </button>
+        </div>
+      </div>
+    </section>
 
     <section
       class="flex mt-16 flex-col justify-center items-center py-15 px-5 gap-8 bg-[#b91c1c] text-white text-center"

@@ -37,7 +37,7 @@ const coursesContainer = document.getElementById('courses-container');
 coursesContainer.innerHTML = '';
 homeCourses.forEach(course => {
   coursesContainer.innerHTML += `
-    <div class="bg-[#ffffff] rounded-2xl p-8 w-full md:w-[350px] shadow-sm flex flex-col justify-between min-h-[220px]">
+    <div class="bg-[#ffffff] rounded-2xl p-8 w-[350px] shadow-sm flex flex-col justify-between min-h-[220px] hover:-translate-y-1 transition-transform duration-300 ease-in-out hover:shadow-xl">
       <div>
         <span class="${course.color} text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
           ${course.tag}
