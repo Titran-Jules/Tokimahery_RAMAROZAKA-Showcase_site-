@@ -12,7 +12,7 @@
   </head>
   <body>
     <header
-      class="flex justify-between items-center py-4 bg-red-dark **:text-white"
+      class="flex justify-between items-center py-4 bg-red-dark **:text-white sticky top-0 z-100"
     >
       <div>
         <a href="index.html">
@@ -55,7 +55,7 @@
       </div>
     </header>
     <section
-      class="flex flex-row justify-center items-center pt-20 px-5 gap-70 bg-[#f3eee8] min-h-screen"
+      class="flex flex-row justify-center items-center pt-15 px-5 gap-70 bg-[#f9f6f1] min-h-screen"
     >
       <div class="max-w-xl">
         <div class="flex items-center gap-3 mb-6">
@@ -98,7 +98,7 @@
 
         <a
           href="#"
-          class="text-[#b91c1c] text-[10px] font-bold tracking-widest uppercase border-b border-[#b91c1c] pb-1 hover:text-[#7f1d1d]"
+          class="text-[#b91c1c] text-[10px] font-bold tracking-widest uppercase border-b border-[#b91c1c] pb-1 hover:opacity-80"
         >
           Ask for a collaboration →
         </a>
@@ -139,26 +139,104 @@
     </section>
 
     <section
-      class="flex flex-row justify-center items-center py-5 px-5 gap-70 bg-[#f3eee8]"
+      class="flex flex-row justify-center items-start py-20 px-10 gap-60 bg-[#ffffff]"
     >
-      <div class="flex flex-row gap-70">
+      <div class="flex flex-col gap-3">
         <div class="flex flex-row gap-3 items-center">
           <hr class="w-8 border-t-2 border-[#b91c1c]" />
-          <p class="text-xs tracking-widest text-gray-500 uppercase">
+          <span
+            class="text-[10px] tracking-[0.2em] text-gray-500 uppercase font-semibold"
+          >
             Who I am
-          </p>
+          </span>
         </div>
-        <h2 class="text-4xl font-serif mb-10">
-          About <span class="italic">me</span>
+        <h2 class="text-6xl font-serif text-[#1a1a1a] leading-tight">
+          About <br />
+          <span class="italic">me</span>
         </h2>
+      </div>
+
+      <div class="max-w-xl flex flex-col gap-10">
         <div
           id="about-text"
-          class="max-w-xl space-y-6 text-gray-700 leading-relaxed"
+          class="space-y-5 text-gray-600 leading-relaxed font-light"
         >
           <p id="aboutMe1"></p>
           <p id="aboutMe2"></p>
         </div>
+        <hr class="border-t border-gray-200" />
+        <div class="max-w-xl flex flex-col">
+          <div
+            id="stats-container"
+            class="flex flex-row justify-between gap-8"
+          ></div>
+        </div>
       </div>
+    </section>
+
+    <section class="bg-[#f3eee8] py-20 px-5 flex flex-col items-center">
+      <div class="text-center mb-12">
+        <div class="flex items-center justify-center gap-4 mb-4">
+          <hr class="w-8 border-t-2 border-[#b91c1c]" />
+          <span
+            class="text-[10px] tracking-[0.2em] text-gray-500 uppercase font-semibold"
+            >Learning</span
+          >
+          <hr class="w-8 border-t-2 border-[#b91c1c]" />
+        </div>
+        <h2 class="text-5xl font-serif text-[#1a1a1a] leading-tight">
+          Courses <span class="italic">online</span> <br />
+          and offline
+        </h2>
+      </div>
+
+      <div
+        id="courses-container"
+        class="flex flex-wrap justify-center gap-6 w-full max-w-6xl"
+      ></div>
+
+      <a
+        href="#"
+        class="mt-12 text-[#b91c1c] uppercase text-[10px] font-bold tracking-widest border-b-2 border-[#b91c1c] pb-1 hover:opacity-80 transition-opacity"
+      >
+        View all courses &rarr;
+      </a>
+    </section>
+
+    <section class="bg-[#ffffff] py-20 px-10">
+      <div class="max-w-6xl mx-auto">
+        <div class="flex flex-col gap-6 mb-16">
+          <div class="flex flex-row gap-3 items-center">
+            <hr class="w-8 border-t-2 border-[#b91c1c]" />
+            <span
+              class="text-[10px] tracking-[0.2em] text-gray-500 uppercase font-semibold"
+              >Background</span
+            >
+          </div>
+          <h2 class="text-6xl font-serif text-[#1a1a1a]">Experience</h2>
+        </div>
+        <div
+          id="experience-grid"
+          class="grid grid-cols-2 gap-x-20 gap-y-16"
+        ></div>
+      </div>
+    </section>
+
+    <section
+      class="flex flex-col justify-center items-center py-24 px-5 gap-8 bg-[#b91c1c] text-white text-center"
+    >
+      <h2 class="text-5xl font-serif">Ready to collaborate?</h2>
+
+      <p class="text-sm opacity-90 font-light max-w-2xl">
+        Whether you're looking for a course, a consultation, or a translation —
+        let's talk.
+      </p>
+
+      <button
+        class="mt-4 px-10 py-5 border border-white rounded-full uppercase text-xs font-bold tracking-[0.2em] hover:bg-white hover:text-[#b91c1c] transition-all duration-300"
+      >
+        Get in touch
+      </button>
     </section>
   </body>
   <script src="./js/home.js"></script>
