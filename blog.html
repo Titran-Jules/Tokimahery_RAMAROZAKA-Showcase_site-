@@ -72,10 +72,10 @@
       </p>
     </main>
 
-    <section class="grid grid-cols-[70%_30%] mx-20 mt-12 gap-16">
-      <div class="flex flex-col">
+    <section class="grid grid-cols-[70%_20%] mx-28 mt-12 gap-16">
+      <div class="flex flex-col gap-8">
         <div class="flex flex-col" id="posts_section"></div>
-        <div class="self-center">
+        <div class="self-center flex gap-3">
           <button
             id="prev-btn"
             class="px-3 py-2 rounded-xl border-2 border-gray-400"
@@ -98,9 +98,9 @@
           </button>
         </div>
       </div>
-      <article>
-        <div class="py-4 px-8 bg-[#FAFAFA] rounded-xl w-max">
-          <div class="flex gap-3 items-center w-40 mb-4">
+      <article class="w-108 flex flex-col gap-8">
+        <div class="py-4 px-8 bg-[#FAFAFA] rounded-xl">
+          <div class="flex gap-3 items-center mb-4">
             <hr class="border-0 h-0.5 w-8 bg-red" />
             <h3 class="text-[0.9rem] text-text-light">ARCHIVES</h3>
           </div>
@@ -110,19 +110,62 @@
           ></div>
         </div>
 
-        <div class="flex flex-col">
-          <div class="flex gap-3 items-center w-40 mb-4">
+        <div class="py-4 px-8 flex flex-col gap-3 rounded-xl bg-[#FAFAFA]">
+          <div class="flex gap-3 items-center w-40 mb-3">
             <hr class="border-0 h-0.5 w-8 bg-red" />
             <h3 class="text-[0.9rem] text-text-light">NEWSLETTER</h3>
           </div>
-          <p>Get new articles straight to your inbox. No spam, ever.</p>
-          <form class="flex flex-col">
-            <input type="email" placeholder="your@email.com" required />
-            <button>SUBSCRIBE</button>
+          <p class="text-[0.9rem] text-text-muted">
+            Get new articles straight to your inbox. No spam, ever.
+          </p>
+          <form class="flex flex-col gap-3">
+            <input
+              class="bg-bg-white px-4 py-2 rounded-xl outline-0 border-2 border-gray-300"
+              type="email"
+              placeholder="your@email.com"
+              required
+            />
+            <button class="text-white bg-red py-3 rounded-xl">SUBSCRIBE</button>
           </form>
+        </div>
+
+        <div class="py-4 px-8 bg-[#FAFAFA] rounded-xl">
+          <div class="flex gap-3 items-center mb-4">
+            <hr class="border-0 h-0.5 w-8 bg-red" />
+            <h3 class="text-[0.9rem] text-text-light">ON YOUTUBE</h3>
+          </div>
+          <p class="text-text-muted text-[0.9rem] mb-3">
+            Latest video from the channel.
+          </p>
+          <div id="channel_section" class="flex flex-col gap-3"></div>
+          <button class="text-[0.9rem] text-red underline mt-4">
+            VIEW ALL VIDEOS <i class="fa-solid fa-right-long text-[0.8rem]"></i>
+          </button>
         </div>
       </article>
     </section>
+
+
+    <section
+      class="flex mt-16 flex-col justify-center items-center py-15 px-5 gap-8 bg-red text-white text-center"
+    >
+      <h2 class="text-4xl font-serif">Want to go deeper?</h2>
+
+      <p class="text-xs opacity-90 font-light max-w-2xl">
+        Explore the courses or get in touch for a consultation.
+      </p>
+      <div class="flex gap-4">
+        <button
+          class="mt-2 px-10 py-3 bg-white text-red border rounded-full text-sm font-bold tracking-[0.2em] hover:bg-red hover:text-white transition-all duration-300"
+        >
+          BROWSE COURSES
+        </button>
+        <button
+          class="mt-2 px-10 py-3 bg-red text-white border rounded-full text-sm font-bold tracking-[0.2em] hover:bg-white hover:text-red transition-all duration-300"
+        >
+          COLLABORATE
+        </button>
+      </div>
     <script src="./js/blog.js"></script>
   </body>
 </html>

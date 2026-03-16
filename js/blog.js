@@ -45,7 +45,7 @@ function renderPosts(page) {
         });
 
         postContent += ` 
-        <div class="flex gap-6 p-4 rounded-xl mb-6 shadow-xl">
+        <div class="flex gap-8 p-6 rounded-xl mb-6 shadow-xl">
             <div class="shrink-0">
                 <img src="${post.thumbnail}" alt="thumbnail" 
                      class="w-48 h-48 object-cover rounded-2xl" />
@@ -110,7 +110,7 @@ let archiveContent = "";
 
 archives.forEach(archive => {
     archiveContent += `
-        <div class="flex justify-between w-80 **:text-[0.9rem]">
+        <div class="flex justify-between **:text-[0.9rem]">
             <h4>${archive.label}</h4>
             <span>${archive.count}</span>
         </div>
@@ -118,3 +118,18 @@ archives.forEach(archive => {
 });
 
 archive_section.innerHTML = archiveContent;
+
+const channel_section = document.querySelector("#channel_section");
+let channelContent = "";
+
+youtubeVideos.forEach(video => {
+    const videoURL = `https://youtube.com${video.id}`;
+    channelContent += `
+        <div class="flex flex-col gap-2">
+            <iframe class="w-full h-54 rounded-xl" src="${videoURL}" frameborder="0" allowfullscreen></iframe>
+            <h3 class="text-[0.8rem]">${video.title}</h3>
+        </div>
+    `
+});
+
+channel_section.innerHTML = channelContent;
