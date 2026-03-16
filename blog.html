@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./dist/output.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header
+      class="flex justify-between items-center py-4 bg-red-dark **:text-white sticky top-0 z-100"
+    >
+      <div>
+        <a href="index.html">
+          <img
+            src="assets/logo.png"
+            class="w-48 cursor-pointer px-3"
+            alt="Logo de Tokimahery Ramarozaka"
+          />
+        </a>
+      </div>
+      <nav>
+        <ul
+          class="flex gap-12 **:text-[0.9rem] [&_li]:flex [&_li]:flex-col [&_li]:items-center [&_li>hr]:w-0 [&_li]:hover:[&>hr]:w-full [&_li>hr]:transition-all"
+        >
+          <li>
+            <a href="index.html">HOME</a>
+            <hr />
+          </li>
+          <li>
+            <a href="#">BLOG</a>
+            <hr />
+          </li>
+          <li>
+            <a href="courses.html">COURSES</a>
+            <hr />
+          </li>
+          <li>
+            <a href="#">TESTIMONIALS</a>
+            <hr />
+          </li>
+          <li>
+            <a href="#">RESEARCH</a>
+            <hr />
+          </li>
+        </ul>
+      </nav>
+      <div class="pr-8 flex gap-2">
+        <input type="text" placeholder="Search anything..." />
+        <i class="fa-solid fa-basket-shopping text-[1.7rem]"></i>
+      </div>
+    </header>
+
+    <main class="flex flex-col gap-4 items-center py-20 bg-bg-warm">
+      <div
+        class="flex items-center gap-4 [&_hr]:border-0 [&_hr]:h-0.5 [&_hr]:w-12 [&_hr]:bg-red-dark"
+      >
+        <hr />
+        <span class="text-[0.9rem] text-text-light">WRITING</span>
+        <hr />
+      </div>
+      <h1 class="text-text-dark font-semibold font-Playfair text-6xl">
+        The <span class="text-red italic">blog</span>
+      </h1>
+      <p class="text-text-light text-center mt-2 w-3/12">
+        Thoughts on teaching, software engineering, languages, and everything in
+        between.
+      </p>
+    </main>
+
+    <section class="grid grid-cols-[70%_30%] mx-20 mt-12 gap-16">
+      <div class="flex flex-col">
+        <div class="flex flex-col" id="posts_section"></div>
+        <div class="self-center">
+          <button
+            id="prev-btn"
+            class="px-3 py-2 rounded-xl border-2 border-gray-400"
+          >
+            <i class="fa-solid fa-left-long text-[0.8rem]"></i> Prev
+          </button>
+          <span
+            class="py-3 px-5 border-2 border-gray-400 rounded-xl recent-post"
+            >1</span
+          >
+          <span
+            class="py-3 px-5 border-2 border-gray-400 rounded-xl recent-post"
+            >2</span
+          >
+          <button
+            id="next-btn"
+            class="px-3 py-2 rounded-xl border-2 border-gray-400"
+          >
+            Next <i class="fa-solid fa-right-long text-[0.8rem]"></i>
+          </button>
+        </div>
+      </div>
+      <article>
+        <div class="py-4 px-8 bg-[#FAFAFA] rounded-xl w-max">
+          <div class="flex gap-3 items-center w-40 mb-4">
+            <hr class="border-0 h-0.5 w-8 bg-red" />
+            <h3 class="text-[0.9rem] text-text-light">ARCHIVES</h3>
+          </div>
+          <div
+            class="flex flex-col gap-2 text-text-muted"
+            id="archive_section"
+          ></div>
+        </div>
+
+        <div class="flex flex-col">
+          <div class="flex gap-3 items-center w-40 mb-4">
+            <hr class="border-0 h-0.5 w-8 bg-red" />
+            <h3 class="text-[0.9rem] text-text-light">NEWSLETTER</h3>
+          </div>
+          <p>Get new articles straight to your inbox. No spam, ever.</p>
+          <form class="flex flex-col">
+            <input type="email" placeholder="your@email.com" required />
+            <button>SUBSCRIBE</button>
+          </form>
+        </div>
+      </article>
+    </section>
+    <script src="./js/blog.js"></script>
+  </body>
+</html>
