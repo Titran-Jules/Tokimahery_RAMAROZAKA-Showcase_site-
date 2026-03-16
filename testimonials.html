@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tokymahery RAMAROZAKA |testimonials</title>
+    <link rel="stylesheet" href="./dist/output.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header
+      class="flex justify-between items-center py-4 bg-red-dark **:text-white sticky top-0 z-100"
+    >
+      <div>
+        <a href="index.html">
+          <img
+            src="assets/logo.png"
+            class="w-48 cursor-pointer px-3"
+            alt="Logo de Tokimahery Ramarozaka"
+          />
+        </a>
+      </div>
+      <nav>
+        <ul
+          class="flex gap-12 **:text-[0.9rem] [&_li]:flex [&_li]:flex-col [&_li]:items-center [&_li>hr]:w-0 [&_li]:hover:[&>hr]:w-full [&_li>hr]:transition-all"
+        >
+          <li>
+            <a href="index.html">HOME</a>
+            <hr />
+          </li>
+          <li>
+            <a href="#">BLOG</a>
+            <hr />
+          </li>
+          <li>
+            <a href="courses.html">COURSES</a>
+            <hr />
+          </li>
+          <li>
+            <a href="#">TESTIMONIALS</a>
+            <hr />
+          </li>
+          <li>
+            <a href="#">RESEARCH</a>
+            <hr />
+          </li>
+        </ul>
+      </nav>
+      <div class="pr-8 flex gap-2">
+        <input type="text" placeholder="Search anything..." />
+        <i class="fa-solid fa-basket-shopping text-[1.7rem]"></i>
+      </div>
+    </header>
+
+    <main class="flex flex-col gap-4 items-center py-20 bg-bg-warm">
+      <div
+        class="flex items-center gap-4 [&_hr]:border-0 [&_hr]:h-0.5 [&_hr]:w-12 [&_hr]:bg-red-dark"
+      >
+        <hr />
+        <span class="text-[0.9rem] text-text-light">SOCIAL PROOF</span>
+        <hr />
+      </div>
+      <h1
+        class="text-text-dark font-semibold font-Playfair text-center text-6xl"
+      >
+        What people <br /><span class="text-red italic">say</span>
+      </h1>
+      <p class="text-text-light text-center mt-2 w-3/12">
+        Thoughts on teaching, software engineering, languages, and everything in
+        between.
+      </p>
+    </main>
+
+    <section class="flex flex-col px-92 py-16 gap-8">
+      <div class="flex items-center gap-3">
+        <hr class="border-0 h-0.5 w-8 bg-red rounded-full" />
+        <h3 class="text-text-muted text-[0.8rem]">STUDENTS</h3>
+      </div>
+      <div id="students_testimonial" class="grid grid-cols-3 gap-8"></div>
+    </section>
+
+    <section class="flex flex-col px-92 py-16 gap-8 bg-bg-warm">
+      <div class="flex items-center gap-3">
+        <hr class="border-0 h-0.5 w-8 bg-red rounded-full" />
+        <h3 class="text-text-muted text-[0.8rem]">COLLABORATORS</h3>
+      </div>
+      <div id="collaborators_testimonial" class="grid grid-cols-2 gap-8"></div>
+    </section>
+
+    <section class="flex flex-col px-92 py-16 gap-8">
+      <div class="flex items-center gap-3">
+        <hr class="border-0 h-0.5 w-8 bg-red rounded-full" />
+        <h3 class="text-text-muted text-[0.8rem]">CUSTOMERS</h3>
+      </div>
+      <div id="customers_testimonial" class="grid grid-cols-3 gap-8"></div>
+    </section>
+
+    <section
+      class="flex mt-16 flex-col justify-center items-center py-15 px-5 gap-8 bg-red text-white text-center"
+    >
+      <h2 class="text-4xl font-serif">Join them</h2>
+
+      <p class="text-xs opacity-90 font-light max-w-2xl">
+        Whether you want to learn, collaborate, or get something built -
+        Tokimahery is ready to help you move forward.
+      </p>
+      <div class="flex gap-4">
+        <button
+          class="mt-2 px-10 py-3 bg-white text-red border rounded-full text-sm font-bold tracking-[0.2em] hover:bg-red hover:text-white transition-all duration-300"
+        >
+          BOOK A COURSE
+        </button>
+        <button
+          class="mt-2 px-10 py-3 bg-red text-white border rounded-full text-sm font-bold tracking-[0.2em] hover:bg-white hover:text-red transition-all duration-300"
+        >
+          COLLABORATE
+        </button>
+      </div>
+    </section>
+
+    <script src="./js/testimonial.js"></script>
+  </body>
+</html>
