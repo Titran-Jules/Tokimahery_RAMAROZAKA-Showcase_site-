@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tokimahery RAMAROZAKA | Research</title>
+    <link rel="stylesheet" href="./dist/output.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header
+      class="flex justify-between items-center py-4 bg-red-dark **:text-white sticky top-0 z-100"
+    >
+      <div>
+        <a href="index.html">
+          <img
+            src="assets/logo.png"
+            class="w-48 cursor-pointer px-3"
+            alt="Logo de Tokimahery Ramarozaka"
+          />
+        </a>
+      </div>
+      <nav>
+        <ul
+          class="flex gap-12 **:text-[0.9rem] [&_li]:flex [&_li]:flex-col [&_li]:items-center [&_li>hr]:w-0 [&_li]:hover:[&>hr]:w-full [&_li>hr]:transition-all"
+        >
+          <li>
+            <a href="index.html">HOME</a>
+            <hr />
+          </li>
+          <li>
+            <a href="#">BLOG</a>
+            <hr />
+          </li>
+          <li>
+            <a href="courses.html">COURSES</a>
+            <hr />
+          </li>
+          <li>
+            <a href="#">TESTIMONIALS</a>
+            <hr />
+          </li>
+          <li>
+            <a href="research.html">RESEARCH</a>
+            <hr />
+          </li>
+        </ul>
+      </nav>
+      <div class="pr-8 flex gap-2 relative">
+        <input type="text" placeholder="Search anything..." />
+        <div class="relative cursor-pointer">
+          <i class="fa-solid fa-basket-shopping text-[1.7rem]"></i>
+          <div
+            id="cart-badge"
+            class="hidden absolute -top-2 -right-2 bg-white !text-red rounded-full w-4 h-4 flex items-center justify-center text-[10px] font-bold"
+          ></div>
+        </div>
+      </div>
+    </header>
+
+    <section class="bg-[#f9f6f1] py-20 px-6">
+      <div class="max-w-5xl mx-auto text-center mb-16">
+        <div class="flex flex-row items-center justify-center gap-3">
+          <hr class="w-8 border-t-2 border-[#b91c1c]" />
+          <p class="uppercase tracking-widest text-gray-500 text-xs">
+            Academic Work
+          </p>
+          <hr class="w-8 border-t-2 border-[#b91c1c]" />
+        </div>
+        <h2 class="text-5xl font-serif font-bold mt-2">
+          Research <span class="text-[#b91c1c] italic">papers</span>
+        </h2>
+        <p class="text-gray-600 mt-4 max-w-xl mx-auto text-sm">
+          My academic work focuses on multi-agent systems and normative
+          frameworks, exploring how autonomous agents coordinate through norms
+          and social structures in complex, distributed environments.
+        </p>
+      </div>
+    </section>
+
+    <section class="bg-[#F4F5F2]">
+      <div id="papers-container" class="max-w-5xl mx-auto space-y-6 py-10"></div>
+    </section>
+
+    <section class="bg-[#991b1b] py-20 px-6 text-center text-bg-white">
+      <h2 class="text-4xl mb-4">Interested in collaborating?</h2>
+      <p class="text-sm mb-6 opacity-95">
+        Open to co-authoring, peer review, and academic consulting<br />engagements.
+      </p>
+      <button
+        class="mt-1 px-10 py-3 border border-white rounded-full uppercase text-sm font-bold tracking-[0.2em] hover:bg-white hover:text-red transition-all duration-300"
+      >
+        Get in touch
+      </button>
+    </section>
+
+    <script src="./js/research.js"></script>
+  </body>
+</html>
