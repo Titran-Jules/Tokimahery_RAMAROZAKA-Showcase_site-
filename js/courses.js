@@ -1,4 +1,4 @@
-import { initCart } from "./panier";
+import { addToCart, initCart } from "./panier.js";
 
 const courses = [
     { id: 1, title: 'Javascript for beginners', description: 'Javascript made easy as your first language. This video walks you through the basic mechanism of algorithms, loops, conditions, functions, JS modules, unit tests, and modern syntax perfect for starters', creationDate: new Date('2026-01-01'), thumbnail: 'https://picsum.photos/400', price: 120000, level: 'beginner', language: 'en', technologies: ['javascript'] },
@@ -143,7 +143,7 @@ function updateCourses() {
                 <p class="line-clamp-3 my-3">${course.description}</p>
                 <div class="flex gap-4 justify-end mt-3">
                     <button class="px-6 py-4 text-red bg-bg-white rounded-xl shadow-xl">Learn More</button>
-                    <button data-course-id="${course.id}" class="add-to-cart-btn px-6 py-4 text-white bg-red rounded-xl shadow-xl">Add to cart</button>
+                    <button data-course-id="${course.id}" data-course-title="${course.title}" data-course-price="${course.price}" data-course-image="${course.thumbnail}" class="add-to-cart-btn px-6 py-4 text-white bg-red rounded-xl shadow-xl">Add to cart</button>
                 </div>
             </main>
         `;
@@ -151,18 +151,13 @@ function updateCourses() {
     
         courses_section.innerHTML = coursesContent;
         
-        const addButtons = document.querySelector(".add-to-cart-btn");
+        const addButtons = document.querySelectorAll(".add-to-cart-btn");
 
         addButtons.forEach((button) => {
             button.addEventListener("click", (event) => {
                 const courseId = Number(event.currentTarget.dataset.courseId);
-
-                if (cartState.items[courseId]) {
-                    alert("This course is already in your cart!");
-                    return;
-                }
-
                 const courseToAdd = courses.find(c => c.id === courseId);
+
                 if (courseToAdd) {
                     addToCart(courseToAdd);
                 }
@@ -170,6 +165,7 @@ function updateCourses() {
         });
     }
 }
+
 function clearFilter () {
     if(mg.classList.contains("brightness-50") && mg.classList.contains("opacity-50")) {
         mg.classList.remove("brightness-50");

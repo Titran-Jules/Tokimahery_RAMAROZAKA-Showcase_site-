@@ -1,3 +1,5 @@
+import { initCart } from "./panier.js";
+
 const papers = [
   {
     id: 1,
@@ -95,3 +97,5 @@ papers.forEach((paper) => {
 
   container.appendChild(card);
 });
+
+initCart();

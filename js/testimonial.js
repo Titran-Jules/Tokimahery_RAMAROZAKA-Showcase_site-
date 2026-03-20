@@ -1,4 +1,4 @@
-import { initCart } from "./panier";
+import { initCart } from "./panier.js";
 
 const testimonials = [
     { id: 1, role: 'student', rating: 5, description: 'A precious aid, a light shining upon every step of my journey', author: 'Soa Mariaka, Promotion Mpamakilay, HEI (2021-2024)', thumbnail: 'https://picsum.photos/200' },

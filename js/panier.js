@@ -4,6 +4,8 @@ export const cartState = JSON.parse(localStorage.getItem('cart_data')) || {
     totalAmount: 0,
 };
 
+let stockData = {};
+
 function saveCart () {
     localStorage.setItem('cart_data', JSON.stringify(cartState));
 }
@@ -33,30 +35,77 @@ function injectCartSection () {
     `;
 
     document.body.appendChild(popup);
+}
 
-    const cartIconContainer = document.querySelector(".fa-basket-shopping")?.parentElement;
-
-    if (cartIconContainer && !document.querySelector("#cart-badge")) {
-        cartIconContainer.classList.add("relative");
-        const badge = document.createElement("div");
-        badge.id = "cart-badge";
-        badge.className = "hidden absolute -top-2 -right-2 bg-red-600 text-white rounded-full w-4 h-4 flex items-center justify-center text-[10px] font-bold";
-        cartIconContainer.appendChild(badge);
+function refreshStockDataRefs () {
+    stockData = {
+        badge: document.querySelector("#cart-badge"),
+        popup: document.querySelector("#cart-popup"),
+        icon: document.querySelector(".fa-basket-shopping"),
+        itemsContainer: document.querySelector("#cart-items"),
+        totalEl: document.querySelector("#cart-total"),
+        closeBtn: document.querySelector("#close-cart"),
+        title: document.querySelector("#cart-title")
     }
 }
 
 export function updateCartBadge() {
-    const badge = document.querySelector("#cart-badge");
-
-    if (!badge) return;
+    if (!stockData.badge) return;
 
     const count = cartState.totalItems;
-    badge.textContent = count;
-    if (count === 0) {
-        badge.classList.add("hidden");
-    } else {
-        badge.classList.remove("hidden");
+    stockData.badge.textContent = count;
+    stockData.badge.classList.toggle("hidden", count == 0);
+}
+
+
+
+export function renderCart() {
+
+    if (!stockData.itemsContainer || !stockData.totalEl) return;
+
+    const items = Object.values(cartState.items);
+    const count = cartState.totalItems;
+
+    stockData.title.textContent = `Your cart${items.length > 0 ? ` (${cartState.totalItems})` : ''}`;
+
+    if (items.length === 0) {
+        stockData.itemsContainer.innerHTML = `
+            <div class="text-center text-gray-500 py-6">Your cart is empty.</div>
+        `;
+        return;
     }
+
+    stockData.itemsContainer.innerHTML = items.map(item => {
+            return `
+                <div class="flex justify-between items-start gap-3 p-3 rounded-xl border border-gray-200">
+                    <div class="flex-1">
+                        <h3 class="text-sm font-semibold">${item.course.title}</h3>
+                        <p class="text-xs text-gray-500">MGA ${item.course.price.toLocaleString('en-us')}</p>
+                    </div>
+                    <button data-course-id="${item.course.id}" class="remove-from-cart text-gray-400 hover:text-red-600 text-lg"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            `;
+        })
+        .join("");
+
+    stockData.totalEl.textContent = `${cartState.totalAmount.toLocaleString('en-us')} Ar`;
+}
+
+export function addToCart(course) {
+    if (!cartState.items[course.id]) {
+        cartState.items[course.id] = { course, quantity: 1 };
+    }
+
+    calculateCartTotals();
+    updateCartBadge();
+    renderCart();
+}
+
+export function removeFromCart(courseId) {
+    delete cartState.items[courseId];
+    calculateCartTotals();
+    updateCartBadge();
+    renderCart();
 }
 
 export function calculateCartTotals() {
@@ -66,144 +115,36 @@ export function calculateCartTotals() {
     saveCart();
 }
 
-export function renderCart() {
-
-    const container = document.querySelector("#cart-items");
-    const totalEl = document.querySelector("#cart-total");
-    const titleEl = document.querySelector("#cart-title");
-
-    if (!container || !totalEl) return;
-    if (!cartItemsContainer || !cartTotalEl) return;
-
-    const items = Object.values(cartState.items);
-    const count = cartState.totalItems;
-
-    if (titleEl) titleEl.textContent = `Your cart${items.length > 0 ? ` (${cartState.totalItems})` : ''}`;
-
-    if (items.length === 0) {
-        container.innerHTML = `
-            <div class="text-center text-gray-500 py-6">Your cart is empty.</div>
-        `;
-        totalEl.textContent = `0 Ar`;
-        return;
-    }
-
-    container.innerHTML = items
-        .map(({course}) => {
-            return `
-                <div class="flex justify-between items-start gap-3 p-3 rounded-xl border border-gray-200">
-                    <div class="flex-1">
-                        <h3 class="text-sm font-semibold">${course.title}</h3>
-                        <p class="text-xs text-gray-500">MGA ${course.price.toLocaleString('en-us')}</p>
-                    </div>
-                    <button data-course-id="${course.id}" class="remove-from-cart text-gray-400 hover:text-red-600 text-lg"><i class="fa-solid fa-trash"></i></button>
-                </div>
-            `;
-        })
-        .join("");
-
-    totalEl.textContent = `${cartState.totalAmount.toLocaleString('en-us')} Ar`;
-}
-
-function addToCart(courseId) {
-    const course = courses.find(c => c.id === courseId);
-    if (!course) return;
-
-    if (!cartState.items[courseId]) {
-        cartState.items[courseId] = { course, quantity: 0 };
-    }
-
-    cartState.items[courseId].quantity += 1;
-    calculateCartTotals();
-    updateCartBadge();
-    renderCart();
-    updateCourses();
-    saveCart();
-}
-
-function removeFromCart(courseId) {
-    if (!cartState.items[courseId]) return;
-
-    delete cartState.items[courseId];
-    calculateCartTotals();
-    updateCartBadge();
-    renderCart();
-    saveCart();
-}
-
 function toggleCartPopup(show) {
-    if (typeof show === "boolean") {
-        show ? cartPopup.classList.remove("hidden") : cartPopup.classList.add("hidden");
-    } else {
-        cartPopup.classList.toggle("hidden");
-    }
+    stockData.popup?.classList.toggle("hidden", !show);
 }
 
 function attachCartEvents() {
 
-    const cartIcon = document.querySelector(".fa-basket-shopping");
-    const closeBtn = document.querySelector("#close-cart");
-    const popup = document.querySelector("#cart-popup");
-
-    if (cartIcon) cartIcon.addEventListener("click", () => popup?.classList.remove("hidden"));
-    if (closeBtn) closeBtn.addEventListener("click", () => popup?.classList.add("hidden"));
+    stockData.icon?.addEventListener("click", () => toggleCartPopup(true));
+    stockData.closeBtn?.addEventListener("click", () => toggleCartPopup(false));
 
     document.addEventListener("click", (event) => {
-        if (!popup || !cartIcon) return;
-        if (popup.contains(event.target) || cartIcon.parentElement.contains(event.target)) {
-            return;
+        if (!stockData.popup?.contains(event.target) && !stockData.icon?.contains(event.target)) {
+            toggleCartPopup(false);
         }
-        popup.classList.add("hidden");
     });
 
-    popup?.addEventListener("click", (event) => {
+    stockData.popup?.addEventListener("click", (event) => {
         const removeBtn = event.target.closest(".remove-from-cart");
-
         if (removeBtn) {
             removeFromCart(Number(removeBtn.dataset.courseId));
         }
     });
 }
 
-function isCourseInCart(courseId) {
-    return Boolean(cartState.items[courseId]);
-}
-
-function updateAddToCartButtons() {
-
-}
-
 export function initCart() {
     injectCartSection();
+    refreshStockDataRefs();
     calculateCartTotals();
     updateCartBadge();
     renderCart();
     attachCartEvents();
-}
-
-function addToCartHandler(event) {
-    const button = event.currentTarget;
-    const courseId = Number(button.dataset.courseId);
-    if (!courseId) return;
-    if (isCourseInCart(courseId)) {
-        alert("This course is already in your cart!");
-        return;
-    }
-
-    addToCart(courseId);
-}
-
-function attachAddToCartEvents() {
-    const addButtons = document.querySelectorAll(".add-to-cart-btn");
-    addButtons.forEach((button) => {
-        button.addEventListener("click", addToCartHandler);
-    });
-}
-
-function updateCartAfterRender() {
-    updateAddToCartButtons();
-    attachAddToCartEvents();
-    renderCart();
 }
 
 window.addEventListener('storage', (event) => {

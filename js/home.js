@@ -1,3 +1,5 @@
+import { initCart } from "./panier.js";
+
 const aboutMe_part1 = `I am a PhD researcher studying complex systems through agent-based modeling and simulation. However, teaching, is my Ikigai, it is driven by a deep commitment to helping students grow beyond what they thought possible.`;
 const aboutMe_part2 = `It is not an accessory to my work — it is its foundation and its energy. Research sharpens my thinking; the classroom gives it meaning. And as a developer, I turn ideas into clean, reliable software built to last.`;
 
@@ -86,3 +88,5 @@ experiences.forEach(exp => {
     </div>
   `;
 });
+
+initCart();

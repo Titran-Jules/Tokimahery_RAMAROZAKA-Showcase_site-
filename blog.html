@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Tokymahery RAMAROZAKA | blog</title>
     <link rel="stylesheet" href="./dist/output.css" />
     <link
       rel="stylesheet"
@@ -51,12 +51,14 @@
       </nav>
       <div class="pr-8 flex gap-2 relative">
         <input type="text" placeholder="Search anything..." />
-        <div class="relative cursor-pointer">
-          <i class="fa-solid fa-basket-shopping text-[1.7rem]"></i>
-          <div
+        <div class="relative list-none flex items-center">
+          <i class="fa-solid fa-basket-shopping cursor-pointer text-xl"></i>
+          <span
             id="cart-badge"
-            class="hidden absolute -top-2 -right-2 bg-white text-red! rounded-full w-4 h-4 items-center justify-center text-[10px] font-bold"
-          ></div>
+            class="absolute -top-2 -right-2 bg-white text-red-dark text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center hidden"
+          >
+            0
+          </span>
         </div>
       </div>
     </header>
@@ -194,7 +196,7 @@
         </button>
       </div>
     </section>
-    <script src="./js/blog.js"></script>
-    <script src="./js/panier.js"></script>
+    <script type="module" src="./js/panier.js"></script>
+    <script type="module" src="./js/blog.js"></script>
   </body>
 </html>

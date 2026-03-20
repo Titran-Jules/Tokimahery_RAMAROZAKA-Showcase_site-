@@ -51,7 +51,15 @@
       </nav>
       <div class="pr-8 flex gap-2">
         <input type="text" placeholder="Search anything..." />
-        <i class="fa-solid fa-basket-shopping text-[1.7rem]"></i>
+        <div class="relative list-none flex items-center">
+          <i class="fa-solid fa-basket-shopping cursor-pointer text-xl"></i>
+          <span
+            id="cart-badge"
+            class="absolute -top-2 -right-2 bg-white text-red-dark text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center hidden"
+          >
+            0
+          </span>
+        </div>
       </div>
     </header>
     <section
@@ -239,5 +247,6 @@
       </button>
     </section>
   </body>
-  <script src="./js/home.js"></script>
+  <script type="module" src="./js/panier.js"></script>
+  <script type="module" src="./js/home.js"></script>
 </html>
