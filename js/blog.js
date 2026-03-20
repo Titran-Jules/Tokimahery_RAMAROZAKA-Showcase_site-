@@ -1,5 +1,26 @@
 import { initCart } from "./panier.js";
 
+const menuToggle = document.getElementById('menu-toggle');
+const menuClose = document.getElementById('menu-close');
+const mobileMenu = document.getElementById('mobile-menu');
+const menuOverlay = document.getElementById('menu-overlay');
+
+function openMenu() {
+    mobileMenu.classList.remove('translate-x-full');
+    menuOverlay.classList.remove('hidden');
+    setTimeout(() => menuOverlay.classList.add('opacity-100'), 10);
+}
+
+function closeMenu() {
+    mobileMenu.classList.add('translate-x-full');
+    menuOverlay.classList.remove('opacity-100');
+    setTimeout(() => menuOverlay.classList.add('hidden'), 300);
+}
+
+menuToggle.addEventListener('click', openMenu);
+menuClose.addEventListener('click', closeMenu);
+menuOverlay.addEventListener('click', closeMenu);
+
 const posts = [
     { id: 1, title: 'Join me at HEI', description: "Since 2021, I have been a part of HEI - Haute École d'Informatique, from the ground up, and until its evolution, struggles, and first students, I have been there, and it was a lot of fun.", creationDate: new Date('2026-03-08'), thumbnail: 'https://picsum.photos/400', tags: ['education', 'HEI'] },
     { id: 2, title: 'Teaching Databases the Right Way', description: "Too many students jump directly into ORMs without understanding relational thinking. In my courses, we start with normalization, constraints, and real SQL joins before touching any abstraction layer. Strong foundations create confident engineers.", creationDate: new Date('2026-01-12'), thumbnail: 'https://picsum.photos/400', tags: ['databases', 'SQL', 'education'] },

@@ -12,18 +12,18 @@
   </head>
   <body>
     <header
-      class="flex justify-between items-center py-4 bg-red-dark **:text-white sticky top-0 z-100"
+      class="flex justify-between items-center py-4 bg-red-dark **:text-white sticky top-0 z-100 md:px-8"
     >
       <div>
         <a href="index.html">
           <img
             src="assets/logo.png"
-            class="w-48 cursor-pointer px-3"
+            class="w-32 sm:w-40 md:w-48 cursor-pointer px-3"
             alt="Logo de Tokimahery Ramarozaka"
           />
         </a>
       </div>
-      <nav>
+      <nav class="hidden md:flex">
         <ul
           class="flex gap-12 **:text-[0.9rem] [&_li]:flex [&_li]:flex-col [&_li]:items-center [&_li>hr]:w-0 [&_li]:hover:[&>hr]:w-full [&_li>hr]:transition-all"
         >
@@ -49,8 +49,12 @@
           </li>
         </ul>
       </nav>
-      <div class="pr-8 flex gap-2 relative">
-        <input type="text" placeholder="Search anything..." />
+      <div class="flex items-center pr-8 gap-4 md:gap-6">
+        <input
+          type="text"
+          placeholder="Search anything..."
+          class="hidden sm:block w-36 md:w-56 bg-white/10 border border-white/20 rounded px-3 py-1.5 text-sm text-white placeholder-white/60 focus:outline-none focus:border-white/40"
+        />
         <div class="relative list-none flex items-center">
           <i class="fa-solid fa-basket-shopping cursor-pointer text-xl"></i>
           <span
@@ -59,6 +63,73 @@
           >
             0
           </span>
+        </div>
+        <button
+          id="menu-toggle"
+          class="md:hidden text-white text-2xl focus:outline-none"
+          aria-label="Toggle menu"
+        >
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+      <div
+        id="menu-overlay"
+        class="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 hidden opacity-0 transition-opacity duration-300"
+      ></div>
+
+      <div
+        id="mobile-menu"
+        class="fixed top-0 right-0 h-full w-[280px] bg-bg-warm z-50 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col"
+      >
+        <div class="flex justify-end p-6">
+          <button
+            id="menu-close"
+            class="**:text-text-dark! text-2xl hover:text-red! transition-colors"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <nav class="flex flex-col px-10 gap-6 mt-4">
+          <div class="flex items-center gap-2 mb-2">
+            <hr class="w-6 border-red" />
+            <span
+              class="text-[10px] tracking-widest text-red! uppercase font-bold"
+              >Navigation</span
+            >
+          </div>
+
+          <a
+            href="index.html"
+            class="text-xl font-serif text-text-dark! hover:text-red! transition-all"
+            >Home</a
+          >
+          <a
+            href="blog.html"
+            class="text-xl font-serif text-text-dark! hover:text-red! transition-all"
+            >Blog</a
+          >
+          <a
+            href="courses.html"
+            class="text-xl font-serif text-text-dark! hover:text-red! transition-all"
+            >Courses</a
+          >
+          <a
+            href="testimonials.html"
+            class="text-xl font-serif text-text-dark! hover:text-red! transition-all"
+            >Testimonials</a
+          >
+        </nav>
+
+        <div class="mt-auto p-10 border-t border-gray-200! bg-white/50!">
+          <p class="text-[10px] tracking-widest text-gray-400! uppercase mb-4">
+            Social
+          </p>
+          <div class="flex gap-6 **:text-gray-600!">
+            <i class="fab fa-facebook hover:text-red! cursor-pointer"></i>
+            <i class="fab fa-linkedin hover:text-red! cursor-pointer"></i>
+            <i class="fab fa-instagram hover:text-red! cursor-pointer"></i>
+          </div>
         </div>
       </div>
     </header>

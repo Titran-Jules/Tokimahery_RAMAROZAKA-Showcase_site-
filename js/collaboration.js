@@ -1,3 +1,25 @@
+import { initCart } from "./panier.js";
+
+const menuToggle = document.getElementById('menu-toggle');
+const menuClose = document.getElementById('menu-close');
+const mobileMenu = document.getElementById('mobile-menu');
+const menuOverlay = document.getElementById('menu-overlay');
+
+function openMenu() {
+    mobileMenu.classList.remove('translate-x-full');
+    menuOverlay.classList.remove('hidden');
+    setTimeout(() => menuOverlay.classList.add('opacity-100'), 10);
+}
+
+function closeMenu() {
+    mobileMenu.classList.add('translate-x-full');
+    menuOverlay.classList.remove('opacity-100');
+    setTimeout(() => menuOverlay.classList.add('hidden'), 300);
+}
+
+menuToggle.addEventListener('click', openMenu);
+menuClose.addEventListener('click', closeMenu);
+menuOverlay.addEventListener('click', closeMenu);
 document.addEventListener("DOMContentLoaded", () => {
   const modeLabels = document.querySelectorAll(".mode-label");
   const modeCheckboxes = document.querySelectorAll('input[name="mode"]');
@@ -50,3 +72,5 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+initCart();
