@@ -1,3 +1,5 @@
+import { initCart } from "./panier";
+
 const courses = [
     { id: 1, title: 'Javascript for beginners', description: 'Javascript made easy as your first language. This video walks you through the basic mechanism of algorithms, loops, conditions, functions, JS modules, unit tests, and modern syntax perfect for starters', creationDate: new Date('2026-01-01'), thumbnail: 'https://picsum.photos/400', price: 120000, level: 'beginner', language: 'en', technologies: ['javascript'] },
     { id: 2, title: 'Java for beginners', description: 'A simple course for true beginners in Java. Learn OOP fundamentals: classes, objects, encapsulation, inheritance, polymorphism, abstraction to understand the basics of Java.', creationDate: new Date('2026-01-01'), thumbnail: 'https://picsum.photos/400', price: 220000, level: 'beginner', language: 'en', technologies: ['java'] },
@@ -127,7 +129,7 @@ function updateCourses() {
         let coursesContent = "";
         filteredCourses.forEach(course => {
         coursesContent += `
-            <main class="shadow-3xl pb-3 flex flex-col gap-2">
+            <main class="shadow-2xs pb-4 flex flex-col gap-2">
                 <div class="relative">
                     <img src="${course.thumbnail}" alt="Thumbnail" class="rounded-t-2xl" />
                     <div class="absolute top-0 left-0 flex gap-2 mt-2 ml-2">
@@ -148,7 +150,24 @@ function updateCourses() {
         });
     
         courses_section.innerHTML = coursesContent;
-    updateCartAfterRender();
+        
+        const addButtons = document.querySelector(".add-to-cart-btn");
+
+        addButtons.forEach((button) => {
+            button.addEventListener("click", (event) => {
+                const courseId = Number(event.currentTarget.dataset.courseId);
+
+                if (cartState.items[courseId]) {
+                    alert("This course is already in your cart!");
+                    return;
+                }
+
+                const courseToAdd = courses.find(c => c.id === courseId);
+                if (courseToAdd) {
+                    addToCart(courseToAdd);
+                }
+            });
+        });
     }
 }
 function clearFilter () {

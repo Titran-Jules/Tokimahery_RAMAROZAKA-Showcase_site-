@@ -52,7 +52,7 @@ papers.forEach((paper) => {
   const card = document.createElement("div");
 
   card.className =
-    "bg-[#F4F5F2] rounded-2xl shadow-sm p-8 hover:shadow-lg hover:-translate-y-2 transition duration-400";
+    "bg-bg-white rounded-2xl shadow-sm p-8 hover:shadow-lg hover:-translate-y-2 transition duration-400";
 
   const date = paper.publishedDate.toLocaleDateString("en-US", {
     year: "numeric",
@@ -62,7 +62,7 @@ papers.forEach((paper) => {
   const tagsHTML = paper.tags
     .map(
       (tag) =>
-        `<span class="text-xs bg-gray-200 px-3 py-1 rounded-full uppercase tracking-wide">${tag}</span>`,
+        `<span class="text-xs bg-[#F6F4F4] px-3 py-1 rounded-full uppercase tracking-wide text-text-muted">${tag}</span>`,
     )
     .join("");
 
@@ -74,7 +74,7 @@ papers.forEach((paper) => {
       <span class="text-sm text-gray-400">${date}</span>
     </div>
 
-    <h3 class="text-xl font-semibold mb-2 leading-snug">
+    <h3 class="text-[1.5rem] font-Playfair font-semibold mb-2 leading-snug">
       ${paper.title}
     </h3>
 
@@ -82,15 +82,15 @@ papers.forEach((paper) => {
       ${paper.authors.join(", ")} — ${paper.journal}
     </p>
 
-    <p class="text-gray-600 text-sm mb-6 leading-relaxed">
+    <p class="text-gray-600 text-sm mb-6 mt-6 leading-relaxed">
       ${paper.abstract}
     </p>
 
     <a href="${paper.pdfUrl}" target="_blank"
-    class="inline-flex items-center gap-2 text-[#b91c1c] text-xs font-medium hover:opacity-70 transform:transition-all">
+    class="inline-flex items-center gap-2 text-red text-xs font-medium hover:opacity-70 transform:transition-all">
     <i class="fa-solid fa-file-pdf"></i>READ PDF
     </a>
-    <hr class="w-15 border-t-2 border-[#b91c1c] items-center">
+    <hr class="w-15 border-t-2 border-red items-center">
   `;
 
   container.appendChild(card);

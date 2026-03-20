@@ -1,3 +1,5 @@
+import { initCart } from "./panier";
+
 const testimonials = [
     { id: 1, role: 'student', rating: 5, description: 'A precious aid, a light shining upon every step of my journey', author: 'Soa Mariaka, Promotion Mpamakilay, HEI (2021-2024)', thumbnail: 'https://picsum.photos/200' },
     { id: 2, role: 'student', rating: 5, description: 'An inspiring mentor who transforms complex concepts into clear and structured knowledge. The discipline and rigor I learned here shaped the way I approach every technical challenge today.', author: 'Faniry Keziah, Promotion Mpamakilay, HEI (2022-2025)', thumbnail: 'https://picsum.photos/200' },
@@ -31,7 +33,7 @@ testimonials.forEach(testimonial => {
 
     if (testimonial.role == "student") {
         studentsTestimonialContent += `
-            <div class="bg-[#FAFAFA] p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col gap-4 hover:shadow-2xl transition-all">
+            <div class="bg-[#FAFAFA] p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col gap-4 hover:shadow-lg transition-all">
                 <div class="flex items-center gap-4">
                     <img src="${testimonial.thumbnail}" alt="${testimonial.author}" class="w-12 h-12 rounded-full object-cover bg-gray-200">
                     <div class="flex flex-col">
@@ -55,8 +57,8 @@ testimonials.forEach(testimonial => {
 
     if (testimonial.role == "collaborator") {
         collaboratorsTestimonialContent += `
-            <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-50 flex flex-col gap-6 h-full hover:shadow-2xl transition-all">
-                <p class="text-gray-700 italic text-[15px] leading-relaxed grow">
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-50 flex flex-col gap-6 h-full hover:shadow-lg transition-all">
+                <p class="text-gray-700 font-bold italic font-Playfair text-[1.2rem] leading-5 grow">
                     "${testimonial.description}"
                 </p>
 
@@ -80,12 +82,12 @@ testimonials.forEach(testimonial => {
 
     if (testimonial.role == "customer") {
         customersTestimonialContent += `
-            <div class="bg-white p-6 rounded-lg shadow-xl shadow-gray-200/50 flex flex-col gap-4 min-h-55">
+            <div class="bg-white p-6 rounded-lg shadow-sm flex flex-col gap-4 min-h-55 hover:shadow-lg transition-all">
                 <div class="flex gap-0.5">
                     ${stars}
                 </div>
 
-                <p class="text-gray-500 text-[13px] leading-relaxed grow">
+                <p class="text-gray-500 text-[0.9rem] leading-relaxed grow">
                     "${testimonial.description}"
                 </p>
 
@@ -103,10 +105,12 @@ testimonials.forEach(testimonial => {
                     </div>
                 </div>
             </div>
-        `
+        `;
     }
 });
 
 studentsTestimonialSection.innerHTML = studentsTestimonialContent;
 collaboratorsTestimonialSection.innerHTML = collaboratorsTestimonialContent;
 customersTestimonialSection.innerHTML = customersTestimonialContent;
+
+initCart();

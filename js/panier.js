@@ -1,47 +1,94 @@
-const cartState = {
+export const cartState = JSON.parse(localStorage.getItem('cart_data')) || {
     items: {},
     totalItems: 0,
     totalAmount: 0,
 };
 
-const cartBadge = document.querySelector("#cart-badge");
-const cartPopup = document.querySelector("#cart-popup");
-const cartIcon = document.querySelector(".fa-basket-shopping");
-const cartItemsContainer = document.querySelector("#cart-items");
-const cartTotalEl = document.querySelector("#cart-total");
-const closeCartBtn = document.querySelector("#close-cart");
+function saveCart () {
+    localStorage.setItem('cart_data', JSON.stringify(cartState));
+}
 
-function updateCartBadge() {
-    const count = cartState.totalItems;
-    cartBadge.textContent = count;
-    if (count === 0) {
-        cartBadge.classList.add("hidden");
-    } else {
-        cartBadge.classList.remove("hidden");
+function injectCartSection () {
+    if (document.querySelector("#cart-popup")) return;
+
+    const popup = document.createElement('div');
+    popup.id = "cart-popup";
+
+    popup.className = "hidden fixed top-20 right-8 bg-white shadow-2xl rounded-2xl w-80 z-50 max-h-96 flex flex-col border border-gray-100";
+
+    popup.innerHTML = `
+      <div class="flex justify-between items-center p-4 border-b">
+        <h2 id="cart-title" class="font-semibold text-lg text-gray-800">Your cart</h2>
+        <button id="close-cart" class="text-gray-400 hover:text-gray-600 text-xl">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div id="cart-items" class="flex-1 overflow-y-auto p-4"></div>
+      <div class="border-t p-4 bg-gray-50 rounded-b-2xl">
+        <div class="flex justify-between items-center font-semibold text-gray-800">
+          <span>Total:</span>
+          <span id="cart-total">0 Ar</span>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(popup);
+
+    const cartIconContainer = document.querySelector(".fa-basket-shopping")?.parentElement;
+
+    if (cartIconContainer && !document.querySelector("#cart-badge")) {
+        cartIconContainer.classList.add("relative");
+        const badge = document.createElement("div");
+        badge.id = "cart-badge";
+        badge.className = "hidden absolute -top-2 -right-2 bg-red-600 text-white rounded-full w-4 h-4 flex items-center justify-center text-[10px] font-bold";
+        cartIconContainer.appendChild(badge);
     }
 }
 
-function calculateCartTotals() {
+export function updateCartBadge() {
+    const badge = document.querySelector("#cart-badge");
+
+    if (!badge) return;
+
+    const count = cartState.totalItems;
+    badge.textContent = count;
+    if (count === 0) {
+        badge.classList.add("hidden");
+    } else {
+        badge.classList.remove("hidden");
+    }
+}
+
+export function calculateCartTotals() {
     const entries = Object.values(cartState.items);
     cartState.totalItems = entries.reduce((sum, item) => sum + item.quantity, 0);
     cartState.totalAmount = entries.reduce((sum, item) => sum + item.course.price * item.quantity, 0);
+    saveCart();
 }
 
-function renderCart() {
+export function renderCart() {
+
+    const container = document.querySelector("#cart-items");
+    const totalEl = document.querySelector("#cart-total");
+    const titleEl = document.querySelector("#cart-title");
+
+    if (!container || !totalEl) return;
+    if (!cartItemsContainer || !cartTotalEl) return;
+
     const items = Object.values(cartState.items);
     const count = cartState.totalItems;
 
-    document.querySelector("#cart-title").textContent = `Your cart${count > 0 ? ` (${count})` : ''}`;
+    if (titleEl) titleEl.textContent = `Your cart${items.length > 0 ? ` (${cartState.totalItems})` : ''}`;
 
     if (items.length === 0) {
-        cartItemsContainer.innerHTML = `
+        container.innerHTML = `
             <div class="text-center text-gray-500 py-6">Your cart is empty.</div>
         `;
-        cartTotalEl.textContent = `0 Ar`;
+        totalEl.textContent = `0 Ar`;
         return;
     }
 
-    cartItemsContainer.innerHTML = items
+    container.innerHTML = items
         .map(({course}) => {
             return `
                 <div class="flex justify-between items-start gap-3 p-3 rounded-xl border border-gray-200">
@@ -55,7 +102,7 @@ function renderCart() {
         })
         .join("");
 
-    cartTotalEl.textContent = `${cartState.totalAmount.toLocaleString('en-us')} Ar`;
+    totalEl.textContent = `${cartState.totalAmount.toLocaleString('en-us')} Ar`;
 }
 
 function addToCart(courseId) {
@@ -71,6 +118,7 @@ function addToCart(courseId) {
     updateCartBadge();
     renderCart();
     updateCourses();
+    saveCart();
 }
 
 function removeFromCart(courseId) {
@@ -80,6 +128,7 @@ function removeFromCart(courseId) {
     calculateCartTotals();
     updateCartBadge();
     renderCart();
+    saveCart();
 }
 
 function toggleCartPopup(show) {
@@ -91,20 +140,27 @@ function toggleCartPopup(show) {
 }
 
 function attachCartEvents() {
-    cartIcon.addEventListener("click", () => toggleCartPopup(true));
-    closeCartBtn.addEventListener("click", () => toggleCartPopup(false));
+
+    const cartIcon = document.querySelector(".fa-basket-shopping");
+    const closeBtn = document.querySelector("#close-cart");
+    const popup = document.querySelector("#cart-popup");
+
+    if (cartIcon) cartIcon.addEventListener("click", () => popup?.classList.remove("hidden"));
+    if (closeBtn) closeBtn.addEventListener("click", () => popup?.classList.add("hidden"));
 
     document.addEventListener("click", (event) => {
-        if (cartPopup.contains(event.target) || cartIcon.parentElement.contains(event.target)) {
+        if (!popup || !cartIcon) return;
+        if (popup.contains(event.target) || cartIcon.parentElement.contains(event.target)) {
             return;
         }
-        toggleCartPopup(false);
+        popup.classList.add("hidden");
     });
 
-    cartPopup.addEventListener("click", (event) => {
-        if (event.target.closest(".remove-from-cart")) {
-            const courseId = Number(event.target.closest(".remove-from-cart").dataset.courseId);
-            removeFromCart(courseId);
+    popup?.addEventListener("click", (event) => {
+        const removeBtn = event.target.closest(".remove-from-cart");
+
+        if (removeBtn) {
+            removeFromCart(Number(removeBtn.dataset.courseId));
         }
     });
 }
@@ -117,7 +173,8 @@ function updateAddToCartButtons() {
 
 }
 
-function initCart() {
+export function initCart() {
+    injectCartSection();
     calculateCartTotals();
     updateCartBadge();
     renderCart();
@@ -148,3 +205,12 @@ function updateCartAfterRender() {
     attachAddToCartEvents();
     renderCart();
 }
+
+window.addEventListener('storage', (event) => {
+    if (event.key === 'cart_data') {
+        const newData = JSON.parse(event.newValue);
+        Object.assign(cartState, newData);
+        updateCartBadge();
+        renderCart();
+    }
+});

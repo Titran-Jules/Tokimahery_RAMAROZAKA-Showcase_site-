@@ -32,7 +32,7 @@
             <hr />
           </li>
           <li>
-            <a href="#">BLOG</a>
+            <a href="blog.html">BLOG</a>
             <hr />
           </li>
           <li>
@@ -40,20 +40,48 @@
             <hr />
           </li>
           <li>
-            <a href="#">TESTIMONIALS</a>
+            <a href="testimonials.html">TESTIMONIALS</a>
             <hr />
           </li>
           <li>
-            <a href="#">RESEARCH</a>
+            <a href="research.html">RESEARCH</a>
             <hr />
           </li>
         </ul>
       </nav>
-      <div class="pr-8 flex gap-2">
+      <div class="pr-8 flex gap-2 relative">
         <input type="text" placeholder="Search anything..." />
-        <i class="fa-solid fa-basket-shopping text-[1.7rem]"></i>
+        <div class="relative cursor-pointer">
+          <i class="fa-solid fa-basket-shopping text-[1.7rem]"></i>
+          <div
+            id="cart-badge"
+            class="hidden absolute -top-2 -right-2 bg-white text-red! rounded-full w-4 h-4 items-center justify-center text-[10px] font-bold"
+          ></div>
+        </div>
       </div>
     </header>
+
+    <div
+      id="cart-popup"
+      class="hidden fixed top-20 right-8 bg-white shadow-2xl rounded-2xl w-80 z-50 max-h-96 flex-col"
+    >
+      <div class="flex justify-between items-center p-4 border-b">
+        <h2 id="cart-title" class="font-semibold text-lg">Your cart</h2>
+        <button
+          id="close-cart"
+          class="text-gray-400 hover:text-gray-600 text-xl"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div id="cart-items" class="flex-1 overflow-y-auto p-4"></div>
+      <div class="border-t p-4 bg-gray-50 rounded-b-2xl">
+        <div class="flex justify-between items-center font-semibold">
+          <span>Total:</span>
+          <span id="cart-total">0 Ar</span>
+        </div>
+      </div>
+    </div>
 
     <main class="flex flex-col gap-4 items-center py-20 bg-bg-warm">
       <div
@@ -167,5 +195,6 @@
       </div>
     </section>
     <script src="./js/blog.js"></script>
+    <script src="./js/panier.js"></script>
   </body>
 </html>
