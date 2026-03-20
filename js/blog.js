@@ -67,34 +67,20 @@ function renderPosts(page) {
             year: 'numeric'
         });
 
-        postContent += ` 
-        <div class="flex gap-8 p-6 rounded-xl mb-6 shadow-xl">
-            <div class="shrink-0">
-                <img src="${post.thumbnail}" alt="thumbnail" 
-                     class="w-48 h-48 object-cover rounded-2xl" />
+        postContent += `
+        <article class="relative flex flex-col md:flex-row gap-6 p-4 md:p-6 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+            <div class="w-full md:w-48 h-48 shrink-0 overflow-hidden rounded-xl">
+                <img src="${post.thumbnail}" alt="${post.title}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
             </div>
-
-            <div class="flex flex-col justify-start relative">
-                <h3 class="text-red text-2xl font-semibold mb-1">
-                    ${post.title}
-                </h3>
-                <span class="text-gray-500 text-sm mb-3">
-                    ${formattedDate}
-                </span>
-                <p class="text-gray-600 leading-snug">
-                    ${post.description}
-                </p>
-
-                <div class="flex gap-2 absolute bottom-0">
-                    ${post.tags.map(tag => `
-                        <span class="px-4 py-1 bg-blue-400 text-white text-xs rounded-full font-medium">
-                            ${tag}
-                        </span>
-                    `).join('')}
+            <div class="flex flex-col grow relative pb-8 md:pb-10">
+                <h3 class="text-red-dark text-xl md:text-2xl font-bold mb-1">${post.title}</h3>
+                <span class="text-gray-400 text-xs mb-3 font-medium uppercase tracking-tighter">${formattedDate}</span>
+                <p class="text-gray-600 text-sm leading-relaxed line-clamp-3 md:line-clamp-none">${post.description}</p>
+                <div class="flex gap-2 absolute bottom-0 left-0">
+                    ${post.tags.map(tag => `<span class="px-3 py-1 bg-[#54A0FF] text-white text-[10px] rounded-full border border-gray-100 font-bold uppercase tracking-widest">#${tag}</span>`).join('')}
                 </div>
             </div>
-        </div>
-        `;    
+        </article>`;
     });
     posts_section.innerHTML = postContent;
 
@@ -143,18 +129,11 @@ archives.forEach(archive => {
 archive_section.innerHTML = archiveContent;
 
 const channel_section = document.querySelector("#channel_section");
-let channelContent = "";
-
-youtubeVideos.forEach(video => {
-    const videoURL = `https://youtube.com${video.id}`;
-    channelContent += `
-        <div class="flex flex-col gap-2">
-            <iframe class="w-full h-54 rounded-xl aspect-video" src="${videoURL}" frameborder="0" allowfullscreen></iframe>
-            <h3 class="text-[0.8rem]">${video.title}</h3>
-        </div>
-    `
-});
-
-channel_section.innerHTML = channelContent;
+channel_section.innerHTML = youtubeVideos.map(video => `
+    <div class="flex flex-col gap-2 min-w-65 lg:min-w-full snap-center">
+        <iframe class="w-full aspect-video rounded-xl shadow-sm" src="https://www.youtube.com/embed/${video.id}" frameborder="0" allowfullscreen></iframe>
+        <h3 class="text-[0.75rem] font-bold text-gray-700 leading-tight">${video.title}</h3>
+    </div>
+`).join('');
 
 initCart();

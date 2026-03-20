@@ -145,15 +145,17 @@
       <h1 class="text-text-dark font-semibold font-Playfair text-6xl">
         The <span class="text-red italic">blog</span>
       </h1>
-      <p class="text-text-light text-center mt-2 w-3/12">
+      <p class="text-text-light text-center mt-2 px-8 lg:px-0 lg:w-3/12">
         Thoughts on teaching, software engineering, languages, and everything in
         between.
       </p>
     </main>
 
-    <section class="grid grid-cols-[70%_20%] mx-28 mt-12 gap-16">
+    <section
+      class="grid lg:grid-cols-[70%_20%] grid-cols-1 mt-5 lg:mx-28 lg:mt-12 lg:gap-16"
+    >
       <div class="flex flex-col gap-8">
-        <div class="flex flex-col" id="posts_section"></div>
+        <div class="flex flex-col gap-4 mx-4" id="posts_section"></div>
         <div class="self-center flex gap-3">
           <button
             id="prev-btn"
@@ -177,8 +179,8 @@
           </button>
         </div>
       </div>
-      <article class="w-108 flex flex-col gap-8">
-        <div class="py-4 px-8 bg-[#FAFAFA] rounded-xl">
+      <article class="lg:w-108 flex flex-col gap-8">
+        <div class="py-4 px-8 bg-[#FAFAFA] rounded-xl mt-32 lg-mt-0">
           <div class="flex gap-3 items-center mb-4">
             <hr class="border-0 h-0.5 w-8 bg-red" />
             <h3 class="text-[0.9rem] text-text-light">ARCHIVES</h3>
@@ -216,7 +218,10 @@
           <p class="text-text-muted text-[0.9rem] mb-3">
             Latest video from the channel.
           </p>
-          <div id="channel_section" class="flex flex-col gap-3"></div>
+          <div
+            id="channel_section"
+            class="flex lg:flex-col gap-6 overflow-x-auto no-scrollbar snap-x snap-mandatory pb-4 lg:pb-0"
+          ></div>
           <button class="text-[0.9rem] text-red underline mt-4">
             VIEW ALL VIDEOS <i class="fa-solid fa-right-long text-[0.8rem]"></i>
           </button>
@@ -232,7 +237,7 @@
       <p class="text-xs opacity-90 font-light max-w-2xl">
         Explore the courses or get in touch for a consultation.
       </p>
-      <div class="flex gap-4">
+      <div class="flex flex-col lg:flex-row gap-4">
         <button
           class="mt-2 px-10 py-3 bg-white text-red border rounded-full text-sm font-bold tracking-[0.2em] hover:bg-bg-warm transition-all duration-300"
         >
