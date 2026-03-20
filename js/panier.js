@@ -95,7 +95,6 @@ export function addToCart(course) {
     if (!cartState.items[course.id]) {
         cartState.items[course.id] = { course, quantity: 1 };
     }
-
     calculateCartTotals();
     updateCartBadge();
     renderCart();
