@@ -128,7 +128,7 @@ youtubeVideos.forEach(video => {
     const videoURL = `https://youtube.com${video.id}`;
     channelContent += `
         <div class="flex flex-col gap-2">
-            <iframe class="w-full h-54 rounded-xl" src="${videoURL}" frameborder="0" allowfullscreen></iframe>
+            <iframe class="w-full h-54 rounded-xl aspect-video" src="${videoURL}" frameborder="0" allowfullscreen></iframe>
             <h3 class="text-[0.8rem]">${video.title}</h3>
         </div>
     `

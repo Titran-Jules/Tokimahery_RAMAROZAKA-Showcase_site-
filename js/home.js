@@ -1,5 +1,27 @@
 import { initCart } from "./panier.js";
 
+const menuToggle = document.getElementById('menu-toggle');
+const menuClose = document.getElementById('menu-close');
+const mobileMenu = document.getElementById('mobile-menu');
+const menuOverlay = document.getElementById('menu-overlay');
+
+function openMenu() {
+    mobileMenu.classList.remove('translate-x-full');
+    menuOverlay.classList.remove('hidden');
+    setTimeout(() => menuOverlay.classList.add('opacity-100'), 10);
+}
+
+function closeMenu() {
+    mobileMenu.classList.add('translate-x-full');
+    menuOverlay.classList.remove('opacity-100');
+    setTimeout(() => menuOverlay.classList.add('hidden'), 300);
+}
+
+menuToggle.addEventListener('click', openMenu);
+menuClose.addEventListener('click', closeMenu);
+menuOverlay.addEventListener('click', closeMenu);
+
+
 const aboutMe_part1 = `I am a PhD researcher studying complex systems through agent-based modeling and simulation. However, teaching, is my Ikigai, it is driven by a deep commitment to helping students grow beyond what they thought possible.`;
 const aboutMe_part2 = `It is not an accessory to my work — it is its foundation and its energy. Research sharpens my thinking; the classroom gives it meaning. And as a developer, I turn ideas into clean, reliable software built to last.`;
 
