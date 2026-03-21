@@ -159,7 +159,7 @@
         <div class="self-center flex gap-3">
           <button
             id="prev-btn"
-            class="px-3 py-2 rounded-xl border-2 border-gray-400"
+            class="px-3 py-2 rounded-xl border-2 border-gray-400 active:scale-95 transition-transform"
           >
             <i class="fa-solid fa-left-long text-[0.8rem]"></i> Prev
           </button>
@@ -173,14 +173,16 @@
           >
           <button
             id="next-btn"
-            class="px-3 py-2 rounded-xl border-2 border-gray-400"
+            class="px-3 py-2 rounded-xl border-2 border-gray-400 active:scale-95 transition-transform"
           >
             Next <i class="fa-solid fa-right-long text-[0.8rem]"></i>
           </button>
         </div>
       </div>
       <article class="lg:w-108 flex flex-col gap-8">
-        <div class="py-4 px-8 bg-[#FAFAFA] rounded-xl mt-32 lg-mt-0">
+        <div
+          class="py-4 px-8 bg-[#FAFAFA] rounded-xl not-lg:mt-32 lg-mt-0 lg-mt-0"
+        >
           <div class="flex gap-3 items-center mb-4">
             <hr class="border-0 h-0.5 w-8 bg-red" />
             <h3 class="text-[0.9rem] text-text-light">ARCHIVES</h3>

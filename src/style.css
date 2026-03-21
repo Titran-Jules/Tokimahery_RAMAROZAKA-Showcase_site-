@@ -18,8 +18,18 @@
     --color-border-light: #f0ece4; 
 
     --font-Playfair: "Playfair";
+
+    @keyword slide-in-right {
+        from { transform: translateX(20px); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
 }
 
 :root {
     font-family: "DM sans";
+}
+
+.animate-staggered-fade {
+  animation: slide-in-right 0.4s ease-out forwards;
+  opacity: 0;
 }
