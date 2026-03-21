@@ -67,13 +67,15 @@ const papers = [
     pdfUrl: "https://edepot.wur.nl/641647#page=144",
   },
 ];
+
 const container = document.getElementById("papers-container");
+container.className = "max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-1 gap-8 py-16";
 
 papers.forEach((paper) => {
   const card = document.createElement("div");
 
   card.className =
-    "bg-bg-white rounded-2xl shadow-sm p-8 hover:shadow-lg hover:-translate-y-2 transition duration-400";
+    "group bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-2xl hover:-translate-y-3 transition-all duration-500 flex flex-col justify-between";
 
   const date = paper.publishedDate.toLocaleDateString("en-US", {
     year: "numeric",
