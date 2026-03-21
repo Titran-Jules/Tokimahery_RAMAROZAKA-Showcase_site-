@@ -179,7 +179,7 @@ function updateCourses() {
                     </div>
                     <span class="absolute text-white bottom-0 right-0 py-1 px-3 ${levelColor[course.level]}">${course.level}</span>
                 </div>
-                <h3 class="text-4xl text-red truncate mt-3">${course.title}</h3>
+                <h3 class="lg:text-4xl text-2xl text-red truncate mt-3">${course.title}</h3>
                 <h4 class="text-xl font-medium">MGA ${course.price.toLocaleString('en-us')}</h4>
                 <p class="line-clamp-3 my-3">${course.description}</p>
                 <div class="flex gap-4 justify-end mt-3">

@@ -79,7 +79,7 @@
 
       <div
         id="mobile-menu"
-        class="fixed top-0 right-0 h-full w-[280px] bg-bg-warm z-50 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col"
+        class="fixed top-0 right-0 h-full w-70 bg-bg-warm z-50 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col"
       >
         <div class="flex justify-end p-6">
           <button
@@ -147,34 +147,69 @@
       >
         What people <br /><span class="text-red italic">say</span>
       </h1>
-      <p class="text-text-light text-center mt-2 w-3/12">
+      <p class="text-text-light lg:text-center not-lg:px-12 mt-2 lg:w-3/12">
         Thoughts on teaching, software engineering, languages, and everything in
         between.
       </p>
     </main>
 
-    <section class="flex flex-col px-92 py-16 gap-8">
+    <section class="flex flex-col px-6 md:px-24 lg:px-48 py-16 gap-8">
       <div class="flex items-center gap-3">
         <hr class="border-0 h-0.5 w-8 bg-red rounded-full" />
-        <h3 class="text-text-muted text-[0.8rem]">STUDENTS</h3>
+        <h3
+          class="text-text-muted text-[0.8rem] font-bold uppercase tracking-widest"
+        >
+          STUDENTS
+        </h3>
       </div>
-      <div id="students_testimonial" class="grid grid-cols-3 gap-8"></div>
+      <div
+        id="students_testimonial"
+        class="flex md:grid md:grid-cols-3 gap-8 overflow-x-auto md:overflow-visible snap-x snap-mandatory hide-scrollbar"
+      ></div>
+      <div
+        id="students_dots"
+        class="flex md:hidden justify-center items-center gap-2 mt-4"
+      ></div>
     </section>
 
-    <section class="flex flex-col px-92 py-16 gap-8 bg-bg-warm">
+    <section
+      class="flex flex-col px-6 md:px-24 lg:px-48 py-16 gap-8 bg-bg-warm"
+    >
       <div class="flex items-center gap-3">
         <hr class="border-0 h-0.5 w-8 bg-red rounded-full" />
-        <h3 class="text-text-muted text-[0.8rem]">COLLABORATORS</h3>
+        <h3
+          class="text-text-muted text-[0.8rem] font-bold uppercase tracking-widest"
+        >
+          COLLABORATORS
+        </h3>
       </div>
-      <div id="collaborators_testimonial" class="grid grid-cols-2 gap-8"></div>
+      <div
+        id="collaborators_testimonial"
+        class="flex md:grid md:grid-cols-2 gap-8 overflow-x-auto md:overflow-visible snap-x snap-mandatory hide-scrollbar"
+      ></div>
+      <div
+        id="collaborators_dots"
+        class="flex md:hidden justify-center items-center gap-2 mt-4"
+      ></div>
     </section>
 
-    <section class="flex flex-col px-92 py-16 gap-8">
+    <section class="flex flex-col px-6 md:px-24 lg:px-48 py-16 gap-8">
       <div class="flex items-center gap-3">
         <hr class="border-0 h-0.5 w-8 bg-red rounded-full" />
-        <h3 class="text-text-muted text-[0.8rem]">CUSTOMERS</h3>
+        <h3
+          class="text-text-muted text-[0.8rem] font-bold uppercase tracking-widest"
+        >
+          CUSTOMERS
+        </h3>
       </div>
-      <div id="customers_testimonial" class="grid grid-cols-3 gap-8"></div>
+      <div
+        id="customers_testimonial"
+        class="flex md:grid md:grid-cols-3 gap-8 overflow-x-auto md:overflow-visible snap-x snap-mandatory hide-scrollbar"
+      ></div>
+      <div
+        id="customers_dots"
+        class="flex md:hidden justify-center items-center gap-2 mt-4"
+      ></div>
     </section>
 
     <section
@@ -186,7 +221,7 @@
         Whether you want to learn, collaborate, or get something built -
         Tokimahery is ready to help you move forward.
       </p>
-      <div class="flex gap-4">
+      <div class="flex lg:flex-row flex-col gap-4">
         <button
           class="mt-2 px-10 py-3 bg-white text-red border rounded-full text-sm font-bold tracking-[0.2em] hover:bg-bg-warm transition-all duration-300"
         >

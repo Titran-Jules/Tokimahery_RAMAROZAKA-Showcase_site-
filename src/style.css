@@ -41,3 +41,33 @@
     animation: slide-in-down 0.4s ease-in-out forwards;
     opacity: 0;
 }
+
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .mobile-carousel-item {
+        flex: 0 0 85%;
+    }
+}
+
+@media (max-width: 767px) {
+    .mobile-carousel-card {
+        flex: 0 0 85%;
+        min-width: 85%;
+        scroll-snap-align: center;
+    }
+}
+
+@media (min-width: 768px) {
+    .mobile-carousel-card {
+        flex: 1 1 auto;
+        min-width: 0;
+        scroll-snap-align: none;
+    }
+}

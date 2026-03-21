@@ -1,4 +1,5 @@
 import { initCart } from "./panier.js";
+
 const menuToggle = document.getElementById('menu-toggle');
 const menuClose = document.getElementById('menu-close');
 const mobileMenu = document.getElementById('mobile-menu');
@@ -19,6 +20,7 @@ function closeMenu() {
 menuToggle.addEventListener('click', openMenu);
 menuClose.addEventListener('click', closeMenu);
 menuOverlay.addEventListener('click', closeMenu);
+
 const testimonials = [
     { id: 1, role: 'student', rating: 5, description: 'A precious aid, a light shining upon every step of my journey', author: 'Soa Mariaka, Promotion Mpamakilay, HEI (2021-2024)', thumbnail: 'https://picsum.photos/200' },
     { id: 2, role: 'student', rating: 5, description: 'An inspiring mentor who transforms complex concepts into clear and structured knowledge. The discipline and rigor I learned here shaped the way I approach every technical challenge today.', author: 'Faniry Keziah, Promotion Mpamakilay, HEI (2022-2025)', thumbnail: 'https://picsum.photos/200' },
@@ -37,99 +39,86 @@ const testimonials = [
     { id: 15, role: 'customer', rating: 5, description: 'From scoping to delivery, the whole process was smooth and transparent. I would not hesitate to work together again.', author: 'Sitraka Andriamanantena', thumbnail: 'https://picsum.photos/200' },
 ]
 
-const studentsTestimonialSection = document.querySelector("#students_testimonial");
-const collaboratorsTestimonialSection = document.querySelector("#collaborators_testimonial");
-const customersTestimonialSection = document.querySelector("#customers_testimonial");
+function renderTestimonials(role, containerId, dotsId) {
+    const container = document.querySelector(`#${containerId}`);
+    const dotsContainer = document.querySelector(`#${dotsId}`);
+    if (!container) return;
 
-let studentsTestimonialContent = "";
-let collaboratorsTestimonialContent = "";
-let customersTestimonialContent = "";
+    const filtered = testimonials.filter(t => t.role === role);
+    let content = "";
 
-testimonials.forEach(testimonial => {
-    const stars = Array.from({ length: 5 }, (_, i) => 
-        `<span class="${i < testimonial.rating ? 'text-red-600' : 'text-gray-300'} text-lg">★</span>`
-    ).join('');
+    filtered.forEach(t => {
+        const stars = Array.from({ length: 5 }, (_, i) => 
+            `<span class="${i < t.rating ? 'text-red-600' : 'text-gray-300'} text-lg">★</span>`
+        ).join('');
 
-    if (testimonial.role == "student") {
-        studentsTestimonialContent += `
-            <div class="bg-[#FAFAFA] p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col gap-4 hover:shadow-lg transition-all">
+        if (role === "student") {
+            content += `<div class="mobile-carousel-card snap-center bg-[#FAFAFA] p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col gap-4 hover:shadow-lg transition-all">
                 <div class="flex items-center gap-4">
-                    <img src="${testimonial.thumbnail}" alt="${testimonial.author}" class="w-12 h-12 rounded-full object-cover bg-gray-200">
+                    <img src="${t.thumbnail}" alt="${t.author}" class="w-12 h-12 rounded-full object-cover bg-gray-200">
                     <div class="flex flex-col">
-                        <h3 class="text-sm font-bold text-gray-900 leading-tight">${testimonial.author}</h3>
-                        <span class="text-xs text-gray-400 font-medium">${testimonial.role}</span>
+                        <h3 class="text-sm font-bold text-gray-900 leading-tight">${t.author}</h3>
+                        <span class="text-xs text-gray-400 font-medium">${t.role}</span>
                     </div>
                 </div>
-    
                 <div class="w-8 h-0.5 bg-red-600"></div>
-    
-                <p class="text-gray-600 text-sm leading-relaxed grow">
-                    ${testimonial.description}
-                </p>
-    
-                <div class="flex gap-0.5">
-                    ${stars}
-                </div>
-            </div>
-        `;
-    }
-
-    if (testimonial.role == "collaborator") {
-        collaboratorsTestimonialContent += `
-            <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-50 flex flex-col gap-6 h-full hover:shadow-lg transition-all">
-                <p class="text-gray-700 font-bold italic font-Playfair text-[1.2rem] leading-5 grow">
-                    "${testimonial.description}"
-                </p>
-
+                <p class="text-gray-600 text-sm leading-relaxed grow">${t.description}</p>
+                <div class="flex gap-0.5">${stars}</div>
+            </div>`;
+        } else if (role === "collaborator") {
+            content += `<div class="mobile-carousel-card snap-center bg-white p-8 rounded-2xl shadow-sm border border-gray-50 flex flex-col gap-6 h-full hover:shadow-lg transition-all">
+                <p class="text-gray-700 font-bold italic font-Playfair text-[1.2rem] leading-5 grow">"${t.description}"</p>
                 <div class="w-full h-px bg-gray-100"></div>
-
                 <div class="flex items-center gap-4">
-                    <img src="${testimonial.thumbnail}" alt="${testimonial.author}" 
-                        class="w-10 h-10 rounded-full grayscale object-cover">
+                    <img src="${t.thumbnail}" alt="${t.author}" class="w-10 h-10 rounded-full grayscale object-cover">
                     <div class="flex flex-col">
-                        <h3 class="text-[14px] font-semibold text-gray-900 leading-tight">
-                            ${testimonial.author}
-                        </h3>
-                        <span class="text-[11px] uppercase tracking-wider text-gray-400 font-bold mt-1">
-                            ${testimonial.role}
-                        </span>
+                        <h3 class="text-[14px] font-semibold text-gray-900 leading-tight">${t.author}</h3>
+                        <span class="text-[11px] uppercase tracking-wider text-gray-400 font-bold mt-1">${t.role}</span>
                     </div>
                 </div>
-            </div>
-        `;
-    }
-
-    if (testimonial.role == "customer") {
-        customersTestimonialContent += `
-            <div class="bg-white p-6 rounded-lg shadow-sm flex flex-col gap-4 min-h-55 hover:shadow-lg transition-all">
-                <div class="flex gap-0.5">
-                    ${stars}
-                </div>
-
-                <p class="text-gray-500 text-[0.9rem] leading-relaxed grow">
-                    "${testimonial.description}"
-                </p>
-
-            
+            </div>`;
+        } else if (role === "customer") {
+            content += `<div class="mobile-carousel-card snap-center bg-white p-6 rounded-lg shadow-sm flex flex-col gap-4 min-h-55 hover:shadow-lg transition-all">
+                <div class="flex gap-0.5">${stars}</div>
+                <p class="text-gray-500 text-[0.9rem] leading-relaxed grow">"${t.description}"</p>
                 <div class="flex items-center gap-3 mt-2">
-                    <img src="${testimonial.thumbnail}" alt="${testimonial.author}" 
-                        class="w-10 h-10 rounded-full object-cover grayscale">
+                    <img src="${t.thumbnail}" alt="${t.author}" class="w-10 h-10 rounded-full object-cover grayscale">
                     <div class="flex flex-col">
-                        <h3 class="text-[14px] font-bold text-gray-900 leading-tight">
-                            ${testimonial.author}
-                        </h3>
-                        <span class="text-[10px] uppercase tracking-widest text-gray-400 font-semibold">
-                            ${testimonial.role}
-                        </span>
+                        <h3 class="text-[14px] font-bold text-gray-900 leading-tight">${t.author}</h3>
+                        <span class="text-[10px] uppercase tracking-widest text-gray-400 font-semibold">${t.role}</span>
                     </div>
                 </div>
-            </div>
-        `;
-    }
-});
+            </div>`;
+        }
+    });
 
-studentsTestimonialSection.innerHTML = studentsTestimonialContent;
-collaboratorsTestimonialSection.innerHTML = collaboratorsTestimonialContent;
-customersTestimonialSection.innerHTML = customersTestimonialContent;
+    container.innerHTML = content;
+
+    if (dotsContainer) {
+        dotsContainer.innerHTML = filtered.map(() => 
+            `<div class="h-2 w-2 bg-gray-300 rounded-full transition-all duration-300"></div>`
+        ).join('');
+
+        const updateDots = () => {
+            const index = Math.round(container.scrollLeft / (container.offsetWidth * 0.85));
+            Array.from(dotsContainer.children).forEach((dot, i) => {
+                if (i === index) {
+                    dot.classList.add("w-8", "bg-red-600");
+                    dot.classList.remove("w-2", "bg-gray-300");
+                } else {
+                    dot.classList.remove("w-8", "bg-red-600");
+                    dot.classList.add("w-2", "bg-gray-300");
+                }
+            });
+        };
+
+        container.addEventListener("scroll", updateDots);
+        updateDots(); 
+    }
+}
+
+renderTestimonials('student', 'students_testimonial', 'students_dots');
+renderTestimonials('collaborator', 'collaborators_testimonial', 'collaborators_dots');
+renderTestimonials('customer', 'customers_testimonial', 'customers_dots');
 
 initCart();
