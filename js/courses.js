@@ -1,4 +1,5 @@
 import { addToCart, initCart } from "./panier.js";
+
 const menuToggle = document.getElementById('menu-toggle');
 const menuClose = document.getElementById('menu-close');
 const mobileMenu = document.getElementById('mobile-menu');
@@ -46,6 +47,23 @@ let currentFilters = {
     priceMIN: 0,
     priceMAX: 300000,
     search: "" 
+}
+const filterOpen = document.getElementById('filter-open');
+const filterClose = document.getElementById('filter-close');
+const filterContainer = document.getElementById('filter-container');
+
+if (filterOpen) {
+    filterOpen.addEventListener('click', () => {
+        filterContainer.classList.remove('-translate-x-full');
+        document.body.style.overflow = 'hidden';
+    });
+}
+
+if (filterClose) {
+    filterClose.addEventListener('click', () => {
+        filterContainer.classList.add('-translate-x-full');
+        document.body.style.overflow = '';
+    });
 }
 
 function filterCourses(data) {
@@ -148,9 +166,9 @@ function updateCourses() {
         let coursesContent = "";
         filteredCourses.forEach(course => {
         coursesContent += `
-            <main class="shadow-2xs pb-4 flex flex-col gap-2">
+            <main class="bg-white rounded-2xl shadow-sm pb-4 overflow-hidden flex flex-col h-full border-b border-b-gray-100">
                 <div class="relative">
-                    <img src="${course.thumbnail}" alt="Thumbnail" class="rounded-t-2xl" />
+                    <img src="${course.thumbnail}" alt="Thumbnail" class="rounded-t-2xl w-full" />
                     <div class="absolute top-0 left-0 flex gap-2 mt-2 ml-2">
                         <span class="text-[0.8rem] text-black bg-white py-1 px-4 rounded-2xl">${course.language.toUpperCase()}</span>
                         <span class="text-[0.8rem] text-white ${course.technologies.length != 0 ? "bg-black" : ""} py-1 px-3 rounded-2xl">${course.technologies.length > 0 ? course.technologies[0] : ""}</span>

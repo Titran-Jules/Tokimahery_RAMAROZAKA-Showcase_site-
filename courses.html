@@ -146,106 +146,157 @@
         <h1 class="text-text-dark font-semibold font-Playfair text-6xl">
           All <span class="text-red italic">courses</span>
         </h1>
-        <p class="text-text-light text-center mt-2 w-3/12">
+        <p class="text-text-light text-center mt-2 not-lg:px-12 lg:w-3/12">
           Online and offline courses across development, translation, and
           research. Find the one that fits your level and goals.
         </p>
       </main>
 
+      <div class="lg:hidden px-4 mt-4">
+        <button
+          id="filter-open"
+          class="w-full py-3 bg-red text-white rounded-xl font-bold flex items-center justify-center gap-2"
+        >
+          <i class="fa-solid fa-filter"></i> FILTER COURSES
+        </button>
+      </div>
+
       <section
-        class="flex justify-between [&_h3]:text-text-light [&_h3]:text-[0.8rem] [&>div]:flex [&>div]:flex-col [&>div]:gap-3 px-16 py-6 rounded-3xl bg-bg-warm mt-4 mx-24"
+        id="filter-container"
+        class="flex lg:justify-center lg:px-20 mt-6 bg-bg-warm pt-8 pb-4 lg:mx-24 rounded-2xl not-lg:fixed not-lg:z-100 not-lg:-translate-y-full not-lg:-translate-x-40"
       >
-        <div>
-          <h3>LANGUAGE</h3>
-          <div class="**:w-5 flex gap-2">
-            <img
-              src="assets/drapeau_madagscar.png"
-              id="mg"
-              alt="drapeau de Madagascar"
-            />
-            <img
-              src="assets/drapeau_france.png"
-              id="fr"
-              alt="drapeau de france"
-            />
-            <img
-              src="assets/drapeau_etat-unis.png"
-              id="en"
-              alt="drapeau des etat-unis"
-            />
-          </div>
-        </div>
-        <div>
-          <h3>TECHNOLOGY</h3>
-          <select
-            name="technology"
-            id="technology"
-            class="bg-bg-white py-2 px-2 rounded-xl"
-          >
-            <option value="all technologies">All technologies</option>
-            <option value="javascript">JavaScript</option>
-            <option value="java">Java</option>
-            <option value="python">Python</option>
-            <option value="php">PHP</option>
-            <option value="sql">SQL</option>
-          </select>
-        </div>
-        <div>
-          <h3>LEVEL</h3>
-          <select
-            name="level"
-            id="level"
-            class="bg-bg-white py-2 px-2 rounded-xl"
-          >
-            <option value="all levels">All levels</option>
-            <option value="beginner">Beginner</option>
-            <option value="intermediate">Intermediate</option>
-            <option value="advanced">Advanced</option>
-          </select>
-        </div>
-        <div>
-          <div class="flex gap-3 items-center">
-            <h3>PRICE RANGE</h3>
-            <div class="flex gap-1 **:text-red-dark **:text-[0.9rem]">
-              <span id="priceMinLabel">0</span>
-              <span>Ar</span>
-              <span>~</span>
-              <span id="priceMaxLabel">300,000</span>
-              <span>Ar</span>
+        <button
+          id="filter-close"
+          class="lg:hidden absolute top-4 right-4 text-2xl text-text-dark"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <h2 class="lg:hidden text-2xl font-serif mb-8 text-red">Filters</h2>
+        <div
+          class="flex not-lg:flex-wrap flex-row gap-8 lg:gap-12 w-full lg:justify-between"
+        >
+          <div class="flex flex-col gap-4">
+            <h3
+              class="text-[10px] tracking-widest text-gray-400 font-bold uppercase"
+            >
+              Language
+            </h3>
+            <div class="flex gap-3">
+              <img
+                src="assets/drapeau_madagscar.png"
+                class="w-6 h-4 cursor-pointer object-cover rounded-sm"
+                id="mg"
+                alt="drapeau de Madagascar"
+              />
+              <img
+                src="assets/drapeau_france.png"
+                class="w-6 h-4 cursor-pointer object-cover rounded-sm"
+                id="fr"
+                alt="drapeau de france"
+              />
+              <img
+                src="assets/drapeau_etat-unis.png"
+                class="w-6 h-4 cursor-pointer object-cover rounded-sm"
+                id="en"
+                alt="drapeau des etat-unis"
+              />
             </div>
           </div>
-          <div class="flex flex-col **:accent-red">
+          <div class="flex flex-col gap-2">
+            <h3
+              class="text-[10px] tracking-widest text-gray-400 font-bold uppercase"
+            >
+              Technology
+            </h3>
+            <select
+              name="technology"
+              id="technology"
+              class="bg-white rounded-xl px-4 py-2 text-sm outline-none border border-gray-100 min-w-40"
+            >
+              <option value="all technologies">All technologies</option>
+              <option value="javascript">JavaScript</option>
+              <option value="java">Java</option>
+              <option value="python">Python</option>
+              <option value="php">PHP</option>
+              <option value="sql">SQL</option>
+            </select>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <h3
+              class="text-[10px] tracking-widest text-gray-400 font-bold uppercase"
+            >
+              Level
+            </h3>
+            <select
+              name="level"
+              id="level"
+              class="bg-white rounded-xl px-4 py-2 text-sm outline-none border border-gray-100 min-w-40"
+            >
+              <option value="all levels">All levels</option>
+              <option value="beginner">Beginner</option>
+              <option value="intermediate">Intermediate</option>
+              <option value="advanced">Advanced</option>
+            </select>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <div class="flex justify-between items-center gap-4">
+              <h3
+                class="text-[10px] tracking-widest text-gray-400 font-bold uppercase"
+              >
+                Price Range
+              </h3>
+              <div class="text-[10px] text-red-700 font-bold">
+                <span id="priceMinLabel">0</span>
+                <span>Ar</span>
+                <span>~</span>
+                <span id="priceMaxLabel">300,000</span>
+                <span>Ar</span>
+              </div>
+            </div>
+            <div class="relative w-48 flex flex-col pt-1">
+              <input
+                type="range"
+                min="0"
+                max="300000"
+                step="1000"
+                value="0"
+                id="priceMin"
+                class="accent-red-700"
+              />
+              <input
+                type="range"
+                min="0"
+                max="300000"
+                step="1000"
+                value="300000"
+                id="priceMax"
+                class="accent-red-700"
+              />
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <h3
+              class="text-[10px] tracking-widest text-gray-400 font-bold uppercase"
+            >
+              Search
+            </h3>
             <input
-              type="range"
-              min="0"
-              max="300000"
-              step="1000"
-              value="0"
-              id="priceMin"
-            />
-            <input
-              type="range"
-              min="0"
-              max="300000"
-              step="1000"
-              value="300000"
-              id="priceMax"
+              type="text"
+              id="search_input"
+              class="bg-white rounded-xl px-4 py-2 text-sm outline-none border border-gray-100 w-64"
+              placeholder="Keywords..."
             />
           </div>
-        </div>
-        <div>
-          <h3>SEARCH</h3>
-          <input
-            type="text"
-            id="search_input"
-            class="bg-bg-white rounded-xl px-4 w-60 py-1"
-            placeholder="Keywords..."
-          />
-        </div>
-        <div class="mt-7">
-          <span class="text-[0.9rem] text-text-light clear cursor-pointer"
-            >CLEAR ALL</span
-          >
+          <div class="pt-5">
+            <span
+              class="text-[11px] text-gray-400 font-bold tracking-widest clear cursor-pointer hover:text-red-700 transition-colors uppercase"
+              >CLEAR ALL</span
+            >
+          </div>
         </div>
       </section>
     </section>
@@ -253,14 +304,14 @@
     <div class="flex flex-col gap-4 mt-4">
       <hr class="h-0.5 border-0 bg-bg-warm" />
       <span
-        class="text-text-light lg:ml-24 text-[0.8rem]"
+        class="text-text-light ml-8 lg:ml-24 text-[0.8rem]"
         id="course_found"
       ></span>
     </div>
 
     <section
       id="courses_section"
-      class="grid grid-cols-4 gap-16 px-24 mt-8"
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-4 md:px-12 lg:px-24 mt-8"
     ></section>
 
     <section
