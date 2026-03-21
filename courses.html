@@ -159,11 +159,23 @@
         >
           <i class="fa-solid fa-filter"></i> FILTER COURSES
         </button>
+        <div class="mt-8 flex flex-col gap-2 lg:hidden">
+          <h3
+            class="text-[10px] tracking-widest text-gray-400 font-bold uppercase"
+          >
+            Search
+          </h3>
+          <input
+            type="text"
+            class="search_input lg:hidden bg-white rounded-xl px-4 py-2 text-sm outline-none border border-gray-100 w-64"
+            placeholder="Keywords..."
+          />
+        </div>
       </div>
 
       <section
         id="filter-container"
-        class="flex lg:justify-center lg:px-20 mt-6 bg-bg-warm pt-8 pb-4 lg:mx-24 rounded-2xl not-lg:fixed not-lg:z-100 not-lg:-translate-y-full not-lg:-translate-x-40"
+        class="flex lg:justify-center not-lg:backdrop-blur-2xl lg:px-20 mt-6 bg-bg-warm pt-8 pb-4 lg:mx-24 lg:rounded-2xl not-lg:fixed not-lg:z-50 not-lg:-translate-y-240 transition-all"
       >
         <button
           id="filter-close"
@@ -172,9 +184,8 @@
           <i class="fa-solid fa-xmark"></i>
         </button>
 
-        <h2 class="lg:hidden text-2xl font-serif mb-8 text-red">Filters</h2>
         <div
-          class="flex not-lg:flex-wrap flex-row gap-8 lg:gap-12 w-full lg:justify-between"
+          class="flex not-lg:flex-wrap not-lg:mt-8 not-lg:px-4 flex-row gap-8 lg:gap-12 w-full lg:justify-between"
         >
           <div class="flex flex-col gap-4">
             <h3
@@ -278,7 +289,7 @@
             </div>
           </div>
 
-          <div class="flex flex-col gap-2">
+          <div class="flex flex-col gap-2 not-lg:hidden">
             <h3
               class="text-[10px] tracking-widest text-gray-400 font-bold uppercase"
             >
@@ -286,16 +297,17 @@
             </h3>
             <input
               type="text"
-              id="search_input"
-              class="bg-white rounded-xl px-4 py-2 text-sm outline-none border border-gray-100 w-64"
+              class="search_input bg-white rounded-xl px-4 py-2 text-sm outline-none border border-gray-100 w-64"
               placeholder="Keywords..."
             />
           </div>
           <div class="pt-5">
-            <span
-              class="text-[11px] text-gray-400 font-bold tracking-widest clear cursor-pointer hover:text-red-700 transition-colors uppercase"
-              >CLEAR ALL</span
+            <button
+              id="clear-btn"
+              class="text-[11px] text-gray-400 font-bold tracking-widest cursor-pointer hover:text-red-700 transition-colors uppercase"
             >
+              CLEAR ALL
+            </button>
           </div>
         </div>
       </section>

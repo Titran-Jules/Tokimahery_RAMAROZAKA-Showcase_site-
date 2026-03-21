@@ -23,6 +23,10 @@
         from { transform: translateX(20px); opacity: 0; }
         to { transform: translateX(0); opacity: 1; }
     }
+    @keyframes slide-in-down {
+        form { transform: translateY(-800px); opacity: 0;}
+        to { transform: translateY(-532px); opacity: 1;}
+    }
 }
 
 :root {
@@ -32,4 +36,8 @@
 .animate-staggered-fade {
   animation: slide-in-right 0.4s ease-out forwards;
   opacity: 0;
+}
+.animate-filter {
+    animation: slide-in-down 0.4s ease-in-out forwards;
+    opacity: 0;
 }

@@ -20,6 +20,7 @@ function closeMenu() {
 menuToggle.addEventListener('click', openMenu);
 menuClose.addEventListener('click', closeMenu);
 menuOverlay.addEventListener('click', closeMenu);
+
 const courses = [
     { id: 1, title: 'Javascript for beginners', description: 'Javascript made easy as your first language. This video walks you through the basic mechanism of algorithms, loops, conditions, functions, JS modules, unit tests, and modern syntax perfect for starters', creationDate: new Date('2026-01-01'), thumbnail: 'https://picsum.photos/400', price: 120000, level: 'beginner', language: 'en', technologies: ['javascript'] },
     { id: 2, title: 'Java for beginners', description: 'A simple course for true beginners in Java. Learn OOP fundamentals: classes, objects, encapsulation, inheritance, polymorphism, abstraction to understand the basics of Java.', creationDate: new Date('2026-01-01'), thumbnail: 'https://picsum.photos/400', price: 220000, level: 'beginner', language: 'en', technologies: ['java'] },
@@ -54,15 +55,15 @@ const filterContainer = document.getElementById('filter-container');
 
 if (filterOpen) {
     filterOpen.addEventListener('click', () => {
-        filterContainer.classList.remove('-translate-x-full');
-        document.body.style.overflow = 'hidden';
+        filterContainer.classList.remove("not-lg:-translate-y-240");
+        filterContainer.classList.add('not-lg:-translate-y-133');
     });
 }
 
 if (filterClose) {
     filterClose.addEventListener('click', () => {
-        filterContainer.classList.add('-translate-x-full');
-        document.body.style.overflow = '';
+        filterContainer.classList.remove("not-lg:-translate-y-133");
+        filterContainer.classList.add('not-lg:-translate-y-240');
     });
 }
 
@@ -136,11 +137,14 @@ priceMax.addEventListener("input", (e) => {
     updateCourses();
 });
 
-const search_input = document.querySelector("#search_input");
-search_input.addEventListener("input", (e) => {
-    currentFilters.search = e.target.value;
-    updateCourses();
+const search_input = document.querySelectorAll(".search_input");
+search_input.forEach(input => {
+    input.addEventListener("input", (e) => {
+        currentFilters.search = e.target.value;
+        updateCourses();
+    });
 });
+
 
 const course_found = document.querySelector("#course_found");
 const courses_section = document.querySelector("#courses_section");
@@ -158,7 +162,7 @@ function updateCourses() {
         courses_section.innerHTML = `
             <div class="flex flex-col col-span-4 justify-self-center self-center m-auto mt-20 mb-20 gap-6">
                 <h2 class="font-Playfair italic text-xl text-gray-500">No courses match your filters.</h2>
-                <button onclick="clearFilter()" class="text-red underline text-[0.9rem] cursor-pointer">CLEAR FILTER</button>
+                <button onClick="clearFilter()" class="text-red underline text-[0.9rem] cursor-pointer">CLEAR FILTER</button>
             </div>
         `;
     }
@@ -222,7 +226,7 @@ function clearFilter () {
     document.querySelector("#priceMinLabel").textContent = "0";
     document.querySelector("#priceMaxLabel").textContent = "300,000";
     priceMax.value = 300000;
-    search_input.value = "";
+    search_input.forEach(input => input.value = "");
 
     currentFilters = {
         languageMG: true,
@@ -236,13 +240,13 @@ function clearFilter () {
     };
     updateCourses();
 }
-const clear_filter = document.querySelectorAll(".clear");
+const clearBtn = document.querySelector("#clear-btn");
 
-clear_filter.forEach((button) => {
-    button.addEventListener("click", () => {
-        clearFilter();
-        updateCourses();
-    });
+clearBtn.addEventListener("click", () => {
+    clearFilter();
+    updateCourses();
 });
+
 updateCourses();
 initCart();
+window.clearFilter = clearFilter;
