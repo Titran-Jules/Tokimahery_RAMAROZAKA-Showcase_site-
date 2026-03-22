@@ -67,7 +67,8 @@ function renderTestimonials(role, containerId, dotsId) {
                 <div class="flex gap-0.5">${stars}</div>
             </div>`;
         } else if (role === "collaborator") {
-            content += `<div class="mobile-carousel-card snap-center bg-white p-8 rounded-2xl shadow-sm border border-gray-50 flex flex-col gap-6 h-full hover:shadow-lg transition-all">
+            content += `
+            <div class="mobile-carousel-card snap-center bg-white p-8 rounded-2xl shadow-sm border border-gray-50 flex flex-col gap-6 h-full hover:shadow-lg transition-all">
                 <p class="text-gray-700 font-bold italic font-Playfair text-[1.2rem] leading-5 grow">"${t.description}"</p>
                 <div class="w-full h-px bg-gray-100"></div>
                 <div class="flex items-center gap-4">
@@ -79,7 +80,8 @@ function renderTestimonials(role, containerId, dotsId) {
                 </div>
             </div>`;
         } else if (role === "customer") {
-            content += `<div class="mobile-carousel-card snap-center bg-white p-6 rounded-lg shadow-sm flex flex-col gap-4 min-h-55 hover:shadow-lg transition-all">
+            content += `
+            <div class="mobile-carousel-card snap-center bg-white p-6 rounded-lg shadow-sm flex flex-col gap-4 min-h-55 hover:shadow-lg transition-all">
                 <div class="flex gap-0.5">${stars}</div>
                 <p class="text-gray-500 text-[0.9rem] leading-relaxed grow">"${t.description}"</p>
                 <div class="flex items-center gap-3 mt-2">

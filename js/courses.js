@@ -75,7 +75,7 @@ function filterCourses(data) {
                                 (currentFilters.languageFR && item.language === 'fr') ||
                                 (currentFilters.languageEN && item.language === 'en');
 
-        const technologyMatch = currentFilters.technology === "all technologies" || item.technologies.includes(currentFilters.technology);
+        const technologyMatch = currentFilters.technology === "all technologies" || (item.technologies && item.technologies.includes(currentFilters.technology));
         const levelMatch = currentFilters.level === "all levels" || item.level === currentFilters.level;
         const priceMatch = item.price >= currentFilters.priceMIN && item.price <= currentFilters.priceMAX;
 
@@ -88,62 +88,79 @@ function filterCourses(data) {
 }
 
 const mg = document.querySelector("#mg");
-mg.addEventListener("click", (e) => {
-    currentFilters.languageMG = !currentFilters.languageMG;
-    e.target.classList.toggle("brightness-50");
-    e.target.classList.toggle("opacity-50");
-    updateCourses();
-});
-    
-const fr = document.querySelector("#fr");
-fr.addEventListener("click", (e) => {
-    currentFilters.languageFR = !currentFilters.languageFR;
-    e.target.classList.toggle("brightness-50");
-    e.target.classList.toggle("opacity-50");
-    updateCourses();
-});
-
-const en = document.querySelector("#en");
-en.addEventListener("click", (e) => {
-    currentFilters.languageEN = !currentFilters.languageEN;
-    e.target.classList.toggle("brightness-50");
-    e.target.classList.toggle("opacity-50");
-    updateCourses();
-});
-
-const technology = document.querySelector("#technology");
-technology.addEventListener("change", (e) => {
-    currentFilters.technology = e.target.value;
-    updateCourses();
-})
-
-const level = document.querySelector("#level");
-level.addEventListener("change", (e) => {
-    currentFilters.level = e.target.value;
-    updateCourses();
-});
-
-const priceMin = document.querySelector("#priceMin");
-priceMin.addEventListener("input", (e) => {
-    currentFilters.priceMIN = parseInt(e.target.value);
-    document.querySelector("#priceMinLabel").textContent = Number(e.target.value).toLocaleString('en-us');
-    updateCourses();
-});
-
-const priceMax = document.querySelector("#priceMax");
-priceMax.addEventListener("input", (e) => {
-    currentFilters.priceMAX = parseInt(e.target.value);
-    document.querySelector("#priceMaxLabel").textContent = Number(e.target.value).toLocaleString('en-us');
-    updateCourses();
-});
-
-const search_input = document.querySelectorAll(".search_input");
-search_input.forEach(input => {
-    input.addEventListener("input", (e) => {
-        currentFilters.search = e.target.value;
+if (mg) {
+    mg.addEventListener("click", (e) => {
+        currentFilters.languageMG = !currentFilters.languageMG;
+        e.target.classList.toggle("brightness-50");
+        e.target.classList.toggle("opacity-50");
         updateCourses();
     });
-});
+}
+
+    
+const fr = document.querySelector("#fr");
+if (fr) {
+    fr.addEventListener("click", (e) => {
+        currentFilters.languageFR = !currentFilters.languageFR;
+        e.target.classList.toggle("brightness-50");
+        e.target.classList.toggle("opacity-50");
+        updateCourses();
+    });
+}
+
+const en = document.querySelector("#en");
+if (en) {
+    en.addEventListener("click", (e) => {
+        currentFilters.languageEN = !currentFilters.languageEN;
+        e.target.classList.toggle("brightness-50");
+        e.target.classList.toggle("opacity-50");
+        updateCourses();
+    });
+}
+
+const technology = document.querySelector("#technology");
+if (technology) {
+    technology.addEventListener("change", (e) => {
+        currentFilters.technology = e.target.value;
+        updateCourses();
+    });
+}
+
+const level = document.querySelector("#level");
+if (level) {
+    level.addEventListener("change", (e) => {
+        currentFilters.level = e.target.value;
+        updateCourses();
+    });
+}
+
+const priceMin = document.querySelector("#priceMin");
+if (priceMin) {
+    priceMin.addEventListener("input", (e) => {
+        currentFilters.priceMIN = parseInt(e.target.value);
+        document.querySelector("#priceMinLabel").textContent = Number(e.target.value).toLocaleString('en-us');
+        updateCourses();
+    });
+}
+
+const priceMax = document.querySelector("#priceMax");
+if (priceMax) {
+    priceMax.addEventListener("input", (e) => {
+        currentFilters.priceMAX = parseInt(e.target.value);
+        document.querySelector("#priceMaxLabel").textContent = Number(e.target.value).toLocaleString('en-us');
+        updateCourses();
+    });
+}
+
+const search_input = document.querySelectorAll(".search_input");
+if (search_input.length > 0) {
+    search_input.forEach(input => {
+        input.addEventListener("input", (e) => {
+            currentFilters.search = e.target.value;
+            updateCourses();
+        });
+    });
+}
 
 
 const course_found = document.querySelector("#course_found");

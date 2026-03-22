@@ -43,7 +43,7 @@ statsContainer.innerHTML = '';
 overview.forEach(item => {
   statsContainer.innerHTML += `
     <div class="flex flex-col">
-      <span class="text-4xl font-serif text-[#b91c1c]">${item.number}</span>
+      <span class="text-4xl font-serif text-red">${item.number}</span>
       <span class="text-[10px] tracking-widest text-gray-400 uppercase font-bold">
         ${item.label}
       </span>
@@ -61,13 +61,13 @@ const coursesContainer = document.getElementById('courses-container');
 coursesContainer.innerHTML = '';
 homeCourses.forEach(course => {
   coursesContainer.innerHTML += `
-    <div class="bg-[#ffffff] rounded-2xl p-8 w-[350px] shadow-sm flex flex-col justify-between min-h-[220px] hover:-translate-y-1 transition-transform duration-300 ease-in-out hover:shadow-xl">
+    <div class="bg-bg-white rounded-2xl p-8 w-87.5 shadow-sm flex flex-col justify-between min-h-55 hover:-translate-y-1 transition-transform duration-300 ease-in-out hover:shadow-xl">
       <div>
         <span class="${course.color} text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
           ${course.tag}
         </span>
         
-        <h3 class="text-xl font-bold text-[#1a1a1a] mt-6 leading-snug">
+        <h3 class="text-xl font-bold text-text-dark mt-6 leading-snug">
           ${course.title}
         </h3>
       </div>
@@ -91,12 +91,12 @@ const expGrid = document.getElementById('experience-grid');
 expGrid.innerHTML = '';
 experiences.forEach(exp => {
   expGrid.innerHTML += `
-    <div class="border-l-2 border-gray-300 pl-8 flex flex-col gap-2 hover:border-[#b91c1c] transition-colors duration-500 group"">
-      <span class="text-[#b91c1c] text-[11px] font-bold tracking-widest uppercase">
+    <div class="border-l-2 border-gray-300 pl-8 flex flex-col gap-2 hover:border-red transition-colors duration-500 group"">
+      <span class="text-red text-[11px] font-bold tracking-widest uppercase">
         ${exp.year}
       </span>
       
-      <h3 class="text-xl font-bold text-[#1a1a1a]">
+      <h3 class="text-xl font-bold text-text-dark">
         ${exp.role}
       </h3>
       
