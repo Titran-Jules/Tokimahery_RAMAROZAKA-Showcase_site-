@@ -91,7 +91,7 @@ const expGrid = document.getElementById('experience-grid');
 expGrid.innerHTML = '';
 experiences.forEach(exp => {
   expGrid.innerHTML += `
-    <div class="border-l-2 border-gray-300 pl-8 flex flex-col gap-2 hover:border-red transition-colors duration-500 group"">
+    <div class="border-l-3 border-gray-300 pl-8 flex flex-col gap-2 lg:py-8 py-4 hover:border-red transition-colors duration-500 group"">
       <span class="text-red text-[11px] font-bold tracking-widest uppercase">
         ${exp.year}
       </span>

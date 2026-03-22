@@ -49,14 +49,16 @@
           </li>
         </ul>
       </nav>
-      <div class="flex items-center pr-8 gap-4 md:gap-6">
+      <div class="flex items-center pr-8 gap-2 md:gap-6">
         <input
           type="text"
           placeholder="Search anything..."
-          class="hidden sm:block w-36 md:w-56 bg-white/10 border border-white/20 rounded px-3 py-1.5 text-sm text-white placeholder-white/60 focus:outline-none focus:border-white/40"
+          class="hidden sm:block w-36 md:w-36 rounded px-3 py-1.5 text-sm text-white placeholder-white/60 focus:outline-none focus:border-white/40"
         />
         <div class="relative list-none flex items-center">
-          <i class="fa-solid fa-basket-shopping cursor-pointer text-xl"></i>
+          <i
+            class="fa-solid fa-basket-shopping cursor-pointer text-[1.6rem]"
+          ></i>
           <span
             id="cart-badge"
             class="absolute -top-2 -right-2 bg-white text-red-dark text-[10px] font-bold rounded-full h-4 w-4 items-center justify-center hidden"
@@ -139,9 +141,9 @@
       </div>
     </header>
     <section
-      class="flex flex-col lg:flex-row justify-center items-center pt-12 lg:pt-20 px-5 md:px-10 lg:px-16 gap-10 lg:gap-20 xl:gap-32 bg-bg-warm min-h-[85vh] lg:min-h-screen"
+      class="flex flex-col lg:flex-row justify-center items-center pt-12 lg:pt-20 px-5 lg:px-16 gap-10 lg:gap-20 bg-bg-warm min-h-[85vh] lg:min-h-screen"
     >
-      <div class="max-w-xl w-full lg:max-w-2xl lg:text-left">
+      <div class="max-w-xl w-full lg:w-2xl lg:text-left">
         <div class="flex items-center gap-3 mb-6">
           <hr class="w-8 border-t-2 border-red" />
           <p class="text-[10px] tracking-widest font-bold text-red uppercase">
@@ -150,10 +152,14 @@
         </div>
 
         <h1
-          class="text-4xl sm:text-5xl md:text-6xl font-serif leading-tight text-text-dark flex flex-col"
+          class="text-4xl lg:text-[4.2rem] lg:leading-17 text-text-dark flex flex-col"
         >
-          <span> Tokimahery </span>
-          <span class="italic font-Playfair text-red">Ramarozaka</span>
+          <span class="font-serif tracking-[-0.1rem] scale-y-110">
+            Tokimahery
+          </span>
+          <span class="italic font-medium scale-y-110 font-Playfair text-red"
+            >Ramarozaka</span
+          >
         </h1>
 
         <p
@@ -162,7 +168,9 @@
           Consultant • Teacher • Developer • Translator • PhD
         </p>
 
-        <p class="text-gray-600 leading-relaxed max-w-sm mb-10 text-sm">
+        <p
+          class="text-gray-600 leading-relaxed lg:max-w-md maw-w-sm mb-10 text-sm"
+        >
           Bridging knowledge across disciplines — from cutting-edge software
           development to academic research and multilingual expertise.
         </p>
@@ -204,15 +212,9 @@
         </div>
       </div>
 
-      <div class="relative order-1 lg:order-2 mb-8 lg:mb-0">
+      <div class="order-1 rounded-full p-3 lg:order-2 mb-8 lg:mb-0">
         <div
-          class="absolute -top-10 -right-10 w-64 h-64 border border-gray-200 rounded-full opacity-50"
-        ></div>
-        <div
-          class="absolute -top-5 -right-5 w-64 h-64 border border-gray-200 rounded-full opacity-30"
-        ></div>
-        <div
-          class="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-md lg:h-112 xl:w-lg xl:h-128 rounded-full border-12 border-white/30 overflow-hidden shadow-2xl mx-auto lg:mx-0"
+          class="w-60 h-60 outline-2 outline-[#CEAFAA] outline-offset-12 lg:w-96 lg:h-96 rounded-full shadow-[14px_-14px_1px_#F3D7D0,18px_16px_1px_#F0E0DC] overflow-hidden mx-auto lg:mx-0"
         >
           <img
             src="/assets/square-image.jpg"
@@ -281,7 +283,7 @@
       ></div>
 
       <a
-        href="#"
+        href="courses.html"
         class="mt-12 text-red uppercase text-[10px] font-bold tracking-widest border-b-2 border-red pb-1 hover:opacity-80 transition-opacity"
       >
         View all courses &rarr;
@@ -302,7 +304,7 @@
         </div>
         <div
           id="experience-grid"
-          class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-x-16 md:gap-y-20 px-4 md:px-0"
+          class="grid grid-cols-1 md:grid-cols-2 not-lg:gap-10 md:gap-x-16 px-4 md:px-0"
         ></div>
       </div>
     </section>
