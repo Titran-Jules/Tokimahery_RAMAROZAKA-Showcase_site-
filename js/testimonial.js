@@ -53,7 +53,8 @@ function renderTestimonials(role, containerId, dotsId) {
         ).join('');
 
         if (role === "student") {
-            content += `<div class="mobile-carousel-card snap-center bg-[#FAFAFA] p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col gap-4 hover:shadow-lg transition-all">
+            content += `
+            <div class="mobile-carousel-card snap-center bg-[#FAFAFA] p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col gap-4 hover:shadow-lg transition-all">
                 <div class="flex items-center gap-4">
                     <img src="${t.thumbnail}" alt="${t.author}" class="w-12 h-12 rounded-full object-cover bg-gray-200">
                     <div class="flex flex-col">
