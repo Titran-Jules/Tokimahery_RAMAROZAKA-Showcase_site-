@@ -208,15 +208,23 @@
           <p class="text-[0.9rem] text-text-muted">
             Get new articles straight to your inbox. No spam, ever.
           </p>
-          <form class="flex flex-col gap-3">
-            <input
-              class="bg-bg-white px-4 py-2 rounded-xl outline-0 border-2 border-gray-300"
-              type="email"
-              placeholder="your@email.com"
-              required
-            />
-            <button class="text-white bg-red py-3 rounded-xl">SUBSCRIBE</button>
-          </form>
+          <div id="subscribe-container">
+            <form class="flex flex-col gap-3">
+              <input
+                class="bg-bg-white px-4 py-2 rounded-xl outline-0 border-2 border-gray-300"
+                type="email"
+                placeholder="your@email.com"
+                id="email-input"
+                required
+              />
+              <button
+                id="subscribe-btn"
+                class="text-white bg-red py-3 rounded-xl"
+              >
+                SUBSCRIBE
+              </button>
+            </form>
+          </div>
         </div>
 
         <div class="py-4 px-8 bg-[#FAFAFA] rounded-xl">

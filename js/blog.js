@@ -57,6 +57,9 @@ const posts_section = document.querySelector("#posts_section");
 const prev_btn = document.querySelector("#prev-btn");
 const next_btn = document.querySelector("#next-btn");
 const recent_post = document.querySelectorAll(".recent-post");
+const subscribe_container = document.querySelector("#subscribe-container");
+const subscribe_btn = document.querySelector("#subscribe-btn");
+const email_input = document.querySelector("#email-input");
 
 let currentPage = 1;
 const pageSize = 5;
@@ -121,12 +124,14 @@ function renderPosts(page) {
     });
 
     if (page === 1) {
-        prev_btn.disabled;
+        prev_btn.disabled = true;
+        next_btn.disabled = false;
         prev_btn.classList.add("opacity-45");
         next_btn.classList.remove("opacity-45");
 
     } else if (page === 2) {
-        next_btn.disabled;
+        next_btn.disabled = true;
+        prev_btn.disabled = false;
         next_btn.classList.add("opacity-45");
         prev_btn.classList.remove("opacity-45");    
     }
@@ -159,8 +164,26 @@ archives.forEach(archive => {
         </div>
     `
 });
-
 archive_section.innerHTML = archiveContent;
+
+if (subscribe_btn) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    subscribe_btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const emailValue = email_input.value.trim();
+
+        if (emailRegex.test(emailValue)) {
+            subscribe_container.innerHTML = ``;
+    
+            subscribe_container.innerHTML = `
+                <p class="italic text-red-dark">You're in! Talk soon</p>
+            `;
+        } else {
+            alert ("Veuillez saisir un email valide!");
+        }
+    });
+}
+
 
 const channel_section = document.querySelector("#channel_section");
 channel_section.innerHTML = youtubeVideos.map(video => `
@@ -169,7 +192,5 @@ channel_section.innerHTML = youtubeVideos.map(video => `
         <h3 class="text-[0.75rem] font-bold text-gray-700 leading-tight">${video.title}</h3>
     </div>
 `).join('');
-
-
 
 initCart();
