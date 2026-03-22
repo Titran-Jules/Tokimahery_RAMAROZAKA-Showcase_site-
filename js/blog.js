@@ -112,13 +112,25 @@ function renderPosts(page) {
     recent_post.forEach(recent => {
         if (Number(recent.textContent) == page) {
             recent.classList.add("bg-red");
-            recent.classList.add("text-white")
+            recent.classList.add("text-white");
         }
         else {
             recent.classList.remove("bg-red");
             recent.classList.remove("text-white");
         }
     });
+
+    if (page === 1) {
+        prev_btn.disabled;
+        prev_btn.classList.add("opacity-45");
+        next_btn.classList.remove("opacity-45");
+
+    } else if (page === 2) {
+        next_btn.disabled;
+        next_btn.classList.add("opacity-45");
+        prev_btn.classList.remove("opacity-45");    
+    }
+
     observePosts();
 }
 
@@ -132,7 +144,6 @@ next_btn.addEventListener("click", () => {
     currentPage++;
     renderPosts(currentPage);
     window.scrollTo({ top: 0, behavior: 'smooth' });
-
 });
 
 renderPosts(currentPage);
