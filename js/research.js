@@ -92,6 +92,7 @@ papers.forEach((paper) => {
     .join("");
 
   card.innerHTML = `
+  <div class="reveal">
     <div class="flex justify-between items-start mb-4">
       <div class="flex gap-2 flex-wrap">
         ${tagsHTML}
@@ -116,6 +117,7 @@ papers.forEach((paper) => {
     <i class="fa-solid fa-file-pdf"></i>READ PDF
     </a>
     <hr class="w-15 border-t-2 border-red items-center">
+  </div>
   `;
 
   container.appendChild(card);
