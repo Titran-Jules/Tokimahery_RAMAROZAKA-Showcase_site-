@@ -91,5 +91,58 @@ type_project.addEventListener("change", (e) => {
 });
 
 
+const collaborationForm = document.querySelector('form');
+
+collaborationForm.addEventListener('submit', (e) => {
+  e.preventDefault(); 
+
+  const firstName = collaborationForm.querySelector('input[placeholder="John"]').value.trim();
+  const lastName = collaborationForm.querySelector('input[placeholder="Doe"]').value.trim();
+  const email = collaborationForm.querySelector('input[type="email"]').value.trim();
+  const description = collaborationForm.querySelector('textarea').value.trim();
+  const projectType = document.querySelector("#type-project").value;
+
+  if (!firstName || !lastName || !email || !description || projectType === "Select a type...") {
+    showNotification("Veuillez remplir tous les champs obligatoires (*)", "bg-red-600");
+    return;
+  }
+
+  const submitBtn = collaborationForm.querySelector('button[type="submit"]');
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i> ENVOI EN COURS...';
+
+  setTimeout(() => {
+    showNotification("Message envoyé avec succès ! Tokimahery vous répondra sous 48h.", "bg-green-600");
+    collaborationForm.reset();
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> SEND MY REQUEST';
+  }, 1500);
+});
+
+function showNotification(message, bgColor) {
+  const existingNote = document.getElementById('form-notification');
+  if (existingNote) existingNote.remove();
+
+  const notification = document.createElement('div');
+  notification.id = 'form-notification';
+  notification.className = `fixed bottom-5 right-5 ${bgColor} text-white px-6 py-3 rounded-lg shadow-2xl transition-all duration-500 transform translate-y-20 z-[100] flex items-center gap-3`;
+  notification.innerHTML = `
+    <i class="fa-solid ${bgColor === 'bg-green-600' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+    <span class="text-sm font-medium">${message}</span>
+  `;
+
+  document.body.appendChild(notification);
+
+  setTimeout(() => {
+    notification.classList.remove('translate-y-20');
+    notification.classList.add('translate-y-0');
+  }, 10);
+
+  setTimeout(() => {
+    notification.classList.add('opacity-0', 'translate-y-10');
+    setTimeout(() => notification.remove(), 500);
+  }, 4000);
+}
+
 initCart();
 initAnimations();
