@@ -102,7 +102,7 @@ function renderPosts(page) {
                 <h3 class="text-red-dark text-xl md:text-2xl font-bold mb-1">${post.title}</h3>
                 <span class="text-gray-400 text-xs mb-3 font-medium uppercase tracking-tighter">${formattedDate}</span>
                 <p class="text-gray-600 text-sm leading-relaxed line-clamp-3 md:line-clamp-none">${post.description}</p>
-                <div class="flex flex-wrap mt-4 lg-mt-0 gap-2 lg-absolute lg:bottom-0 lg:left-0">
+                <div class="flex flex-wrap mt-4 lg-mt-0 gap-2 lg:absolute lg:bottom-0">
                     ${post.tags.map(tag => `<span class="px-3 py-1 bg-[#54A0FF] text-white text-[10px] rounded-full border border-gray-100 font-bold uppercase tracking-widest">#${tag}</span>`).join('')}
                 </div>
             </div>
