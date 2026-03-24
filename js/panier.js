@@ -27,7 +27,7 @@ function injectCartSection() {
         </button>
       </div>
       <div id="cart-items"></div>
-      <div class="border-t-2 border-gray-100 p-4 rounded-b-2xl">
+      <div id="card-footer" class="border-t-2 border-gray-100 p-4 rounded-b-2xl hidden">
         <div class="flex justify-between items-center font-semibold text-gray-800">
           <span>Total:</span>
           <span id="cart-total">0 Ar</span>
@@ -45,6 +45,7 @@ function refreshStockDataRefs() {
     popup: document.querySelector("#cart-popup"),
     icon: document.querySelector(".fa-basket-shopping"),
     itemsContainer: document.querySelector("#cart-items"),
+    footer: document.querySelector("#card-footer"),
     totalEl: document.querySelector("#cart-total"),
     closeBtn: document.querySelector("#close-cart"),
     title: document.querySelector("#cart-title"),
@@ -60,7 +61,7 @@ export function updateCartBadge() {
 }
 
 export function renderCart() {
-  if (!stockData.itemsContainer || !stockData.totalEl) return;
+  if (!stockData.itemsContainer) return;
 
   const items = Object.values(cartState.items);
   const count = cartState.totalItems;
@@ -71,10 +72,11 @@ export function renderCart() {
     stockData.itemsContainer.innerHTML = `
             <div class="text-center text-gray-500 py-6">Your cart is empty.</div>
         `;
+    stockData.footer?.classList.add("hidden");
     stockData.totalEl.textContent = "0 Ar";
     return;
   }
-
+  stockData.footer?.classList.remove("hidden");
   stockData.itemsContainer.innerHTML = items
     .map((item) => {
       return `

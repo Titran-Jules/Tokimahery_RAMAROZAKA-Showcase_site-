@@ -1,4 +1,5 @@
 import { initCart } from "./panier.js";
+import {initAnimations} from "./animation/animation.js";
 
 const menuToggle = document.getElementById('menu-toggle');
 const menuClose = document.getElementById('menu-close');
@@ -131,9 +132,9 @@ function renderPosts(page) {
 
     } else if (page === 2) {
         next_btn.disabled = true;
-        prev_btn.disabled = false;
+        prev_btn.disabled = false; 
+        prev_btn.classList.remove("opacity-45");
         next_btn.classList.add("opacity-45");
-        prev_btn.classList.remove("opacity-45");    
     }
 
     observePosts();
@@ -149,6 +150,16 @@ next_btn.addEventListener("click", () => {
     currentPage++;
     renderPosts(currentPage);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+const page_numbers = document.querySelectorAll(".page-number");
+
+page_numbers.forEach(page_number => {
+    page_number.addEventListener("click", () => {
+        currentPage = Number(page_number.textContent);
+        renderPosts(currentPage);
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    });
 });
 
 renderPosts(currentPage);
@@ -194,3 +205,4 @@ channel_section.innerHTML = youtubeVideos.map(video => `
 `).join('');
 
 initCart();
+initAnimations();

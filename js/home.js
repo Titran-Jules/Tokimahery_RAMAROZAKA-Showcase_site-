@@ -1,4 +1,5 @@
 import { initCart } from "./panier.js";
+import { initAnimations } from "./animation/animation.js";
 
 const menuToggle = document.getElementById('menu-toggle');
 const menuClose = document.getElementById('menu-close');
@@ -40,10 +41,13 @@ const overview = [
 const statsContainer = document.getElementById('stats-container');
 statsContainer.innerHTML = '';
 
-overview.forEach(item => {
+overview.forEach((item, i) => {
+  const numericValue = parseInt(item.number);
+  const suffix = item.number.toString().replace(/[0-9]/g, '');
+
   statsContainer.innerHTML += `
-    <div class="flex flex-col">
-      <span class="text-4xl font-serif text-red">${item.number}</span>
+    <div class="flex flex-col reveal" style="transition-delay: ${i * 100}ms">
+      <span class="stat-number text-4xl font-serif text-red" data-target="${numericValue}" data-suffix=${suffix}>0</span>
       <span class="text-[10px] tracking-widest text-gray-400 uppercase font-bold">
         ${item.label}
       </span>
@@ -59,9 +63,10 @@ const homeCourses = [
 
 const coursesContainer = document.getElementById('courses-container');
 coursesContainer.innerHTML = '';
-homeCourses.forEach(course => {
+homeCourses.forEach((course, i) => {
   coursesContainer.innerHTML += `
-    <div class="bg-bg-white rounded-2xl p-8 w-87.5 shadow-sm flex flex-col justify-between min-h-55 hover:-translate-y-1 transition-transform duration-300 ease-in-out hover:shadow-xl">
+    <div class="reveal bg-bg-white rounded-2xl p-8 w-87.5 shadow-sm flex flex-col justify-between min-h-55 hover:-translate-y-1 transition-transform duration-300 ease-in-out hover:shadow-xl"
+          style="transition-delay: ${i * 150}ms">
       <div>
         <span class="${course.color} text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
           ${course.tag}
@@ -89,9 +94,11 @@ const experiences = [
 
 const expGrid = document.getElementById('experience-grid');
 expGrid.innerHTML = '';
-experiences.forEach(exp => {
+experiences.forEach((exp, i) => {
   expGrid.innerHTML += `
-    <div class="border-l-3 border-gray-300 pl-8 flex flex-col gap-2 lg:py-8 py-4 hover:border-red transition-colors duration-500 group"">
+    <div class="reveal border-l-3 border-gray-300 pl-8 flex flex-col gap-2 lg:py-8 py-4 hover:border-red transition-colors duration-500 group"
+        style="transition-delay: ${i * 150}ms"    
+    >
       <span class="text-red text-[11px] font-bold tracking-widest uppercase">
         ${exp.year}
       </span>
@@ -112,3 +119,4 @@ experiences.forEach(exp => {
 });
 
 initCart();
+initAnimations();

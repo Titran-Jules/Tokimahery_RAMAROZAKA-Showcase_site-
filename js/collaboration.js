@@ -1,4 +1,5 @@
 import { initCart } from "./panier.js";
+import { initAnimations } from "./animation/animation.js";
 
 const menuToggle = document.getElementById('menu-toggle');
 const menuClose = document.getElementById('menu-close');
@@ -74,3 +75,4 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 initCart();
+initAnimations();

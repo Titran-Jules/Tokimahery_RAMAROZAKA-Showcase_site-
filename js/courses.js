@@ -1,4 +1,5 @@
 import { addToCart, initCart } from "./panier.js";
+import {initAnimations} from "./animation/animation.js";
 
 const menuToggle = document.getElementById('menu-toggle');
 const menuClose = document.getElementById('menu-close');
@@ -267,3 +268,4 @@ clearBtn.addEventListener("click", () => {
 updateCourses();
 initCart();
 window.clearFilter = clearFilter;
+initAnimations();
